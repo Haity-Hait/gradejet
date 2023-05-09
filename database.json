@@ -1,0 +1,120 @@
+{
+    "landingPage": {
+        "pageTitle": "School Management Software",
+        "pageSubtitle": "Learn the skills you need to succeed in tech",
+        "courses": [
+            {
+                "name": "UI/UX Design",
+                "description": [
+                    {
+                        "id": 1,
+                        "contents": "Learn how to create beautiful and intuitive user interfaces with a focus on user experience."
+                    },
+                    {
+                        "id": 2,
+                        "contents": "Are you interested in creating intuitive and engaging digital experiences that users will love? Our UI/UX courses can help you develop the skills you need to design stunning interfaces and interactions that meet your users' needs. Our program offers a range of courses that cover the fundamentals of user-centered design, prototyping, user testing, and more. Whether you're a beginner or an experienced designer looking to expand your skills, our courses can help you take your career to the next level."
+                    },
+                    {
+                        "id": 3,
+                        "contents": "Our UI/UX courses include: Introduction to UI/UX Design User Research and Personas Design Thinking and Ideation Sketching and Wireframing Prototyping with Figma Interaction Design and Animation User Testing and Feedback Design Systems and Style Guides Mobile App Design Web Design All of our courses are taught by industry experts with years of experience in the field. You'll learn practical skills that you can apply to real-world design projects, and you'll have the opportunity to collaborate with other students in our online community."
+                    }
+                ],
+                "image": "https://cdn.fordhamram.com/wp-content/uploads/Best-Online-UXUI-Courses.jpg"
+            },
+            {
+                "name": "Software Engineering",
+                "description": [
+                    {
+                        "id": 1,
+                        "contents": "Welcome to our Software Engineering Course Program Are you interested in building robust, scalable, and maintainable software applications? Our software engineering courses can help you develop the skills you need to design and develop high-quality software that meets your users' needs."
+                    },
+                    {
+                        "id": 2,
+                        "contents": "Our program offers a range of courses that cover the fundamentals of programming, software architecture, testing, deployment, and more. Whether you're a beginner or an experienced developer looking to expand your skills, our courses can help you take your career to the next level."
+                    },
+                    {
+                        "id": 3,
+                        "contents": "Our software engineering courses include: Introduction to Programming with Python Object-Oriented Programming with Java Web Development with HTML, CSS, and JavaScript Algorithms and Data Structures Software Design and Architecture Software Testing and Quality Assurance DevOps and Continuous Integration Cloud Computing and Deployment Mobile App Development with React Native Artificial Intelligence and Ethics All of our courses are taught by industry experts with years of experience in the field. You'll learn practical skills that you can apply to real-world software projects, and you'll have the opportunity to collaborate with other students in our online community."
+                    }
+                ],
+                "image": "https://uploads-ssl.webflow.com/62e95dddfb380a0e61193e7d/634970c7cbeed5644711b937_62fd57ccd6890f25796f92f9_AdobeStock_295461823.jpeg"
+            },
+            {
+                "name": "Machine Learning",
+                "description": [
+                    {
+                        "id": 1,
+                        "contents": "Are you interested in building intelligent systems that can learn from data and make predictions? Our machine learning courses can help you develop the skills you need to design and train machine learning models that can solve complex problems."
+                    },
+                    {
+                        "id": 2,
+                        "contents": "Our program offers a range of courses that cover the fundamentals of machine learning, deep learning, reinforcement learning, computer vision, and more. Whether you're a beginner or an experienced practitioner looking to expand your skills, our courses can help you take your career to the next level."
+                    },
+                    {
+                        "id": 3,
+                        "contents": "Our machine learning courses include: Introduction to Machine Learning Linear Algebra and Calculus for Machine Learning Supervised Learning: Regression and Classification Unsupervised Learning: Clustering and Dimensionality Reduction Deep Learning and Neural Networks Reinforcement Learning and Control Computer Vision and Image Processing Natural Language Processing Time Series Analysis Explainability and Interpretability in Machine Learning All of our courses are taught by industry experts with years of experience in the field. You'll learn practical skills that you can apply to real-world machine learning projects, and you'll have the opportunity to collaborate with other students in our online community."
+                    }
+                ],
+                "image": "https://miro.medium.com/v2/resize:fit:1400/1*cG6U1qstYDijh9bPL42e-Q.jpeg"
+            },
+            {
+                "name": "Data Science",
+                "description": [
+                    {
+                        "id": 1,
+                        "contents": "Are you interested in extracting insights and knowledge from data to inform business decisions? Our data science courses can help you develop the skills you need to analyze and visualize data, build predictive models, and communicate results effectively."
+                    },
+                    {
+                        "id": 2,
+                        "contents": "Our program offers a range of courses that cover the fundamentals of data analysis, statistics, machine learning, data visualization, and more. Whether you're a beginner or an experienced analyst looking to expand your skills, our courses can help you take your career to the next level."
+                    },
+                    {
+                        "id": 3,
+                        "contents": "Our data science courses include: Introduction to Data Science Data Analysis and Visualization Statistical Inference and Regression Analysis Data Wrangling and Cleaning Machine Learning Fundamentals Supervised Learning: Regression and Classification Unsupervised Learning: Clustering and Dimensionality Reduction Deep Learning and Neural Networks Natural Language Processing Time Series Analysis All of our courses are taught by industry experts with years of experience in the field. You'll learn practical skills that you can apply to real-world data projects, and you'll have the opportunity to collaborate with other students in our online community."
+                    }
+                ],
+                "image": "https://imageio.forbes.com/specials-images/imageserve/635f79fbf214917bd2876e03/0x0.jpg?format=jpg&width=1200"
+            },
+            {
+                "name": "Graphic Design",
+                "description": [
+                    {
+                        "id": 1,
+                        "contents": "Are you interested in creating stunning visual designs that communicate ideas and evoke emotions? Our graphic design courses can help you develop the skills you need to design beautiful, effective graphics for print and digital media."
+                    },
+                    {
+                        "id": 2,
+                        "contents": "Our program offers a range of courses that cover the fundamentals of graphic design, typography, color theory, layout, branding, and more. Whether you're a beginner or an experienced designer looking to expand your skills, our courses can help you take your career to the next level."
+                    },
+                    {
+                        "id": 2,
+                        "contents": "Our program offers a range of courses that cover the fundamentals of graphic design, typography, color theory, layout, branding, and more. Whether you're a beginner or an experienced designer looking to expand your skills, our courses can help you take your career to the next level."
+                    },
+                    {
+                        "id": 3,
+                        "contents": "Our graphic design courses include: Introduction to Graphic Design Typography and Layout Design Color Theory and Color Palettes Digital Illustration and Drawing Branding and Identity Design Web Design and UX/UI Design Print Design and Production Motion Graphics and Animation Visual Design for Social Media Portfolio Building and Freelancing All of our courses are taught by industry experts with years of experience in the field. You'll learn practical skills that you can apply to real-world design projects, and you'll have the opportunity to collaborate with other students in our online community."
+                    }
+                ],
+                "image": "https://img.freepik.com/free-photo/one-woman-elegance-colorful-autumn-nature-generative-ai_188544-9733.jpg"
+            },
+            {
+                "name": "Robotics",
+                "description": [
+                    {
+                        "id": 1,
+                        "contents": "Are you interested in designing, building, and programming robots that can perform complex tasks? Our robotics courses can help you develop the skills you need to create intelligent, autonomous robots that can navigate the world around them."
+                    },
+                    {
+                        "id": 2,
+                        "contents": "Our program offers a range of courses that cover the fundamentals of robotics, control theory, perception, machine learning, and more. Whether you're a beginner or an experienced roboticist looking to expand your skills, our courses can help you take your career to the next level."
+                    },
+                    {
+                        "id": 3,
+                        "contents": "Our robotics courses include: Introduction to Robotics and Control Robot Perception and Localization Robot Motion Planning and Control Robot Manipulation and Grasping Human-Robot Interaction Robot Learning and Adaptation Multi-Robot Systems Robot Ethics and Policy All of our courses are taught by industry experts with years of experience in the field. You'll learn practical skills that you can apply to real-world robotics projects, and you'll have the opportunity to collaborate with other students in our online community."
+                    }
+                ],
+                "image": "https://media.kasperskycontenthub.com/wp-content/uploads/sites/43/2019/10/14084818/abstract-robot-thinking-800x450.jpg"
+            }
+        ]
+    }
+}
