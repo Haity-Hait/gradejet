@@ -1,1 +1,1 @@
-#EASY LINKS MANAGEMENT SYSTEM
+# Easy Links School Management System
