@@ -11,10 +11,13 @@ const GenerateStudents = () => {
     const [email, setEmail] = useState("")
     const [dob, setDob] = useState("")
     const [show, setShow] = useState(false);
+    const [department, setDepartment] = useState(false);
 
     let studentId = Math.floor(Math.random() * (100000 - 10000)+ 10000)
     let password =  Math.random().toString(36).slice(2);
-    let data = {name, email, dob, studentId, password}
+    const image = "https://scict.edossier.app/admin/assets/img/man.png"
+
+    let data = {name, email, dob, studentId, password, image, department}
 
 
     const add = async (e) => {
@@ -28,7 +31,7 @@ const GenerateStudents = () => {
             console.log(err);
         })
 
-        axios.post("http://localhost:1516/register", data)
+        axios.post("http://localhost:1516/student/register", data)
         .then((res) => {
             console.log(res);
             // alert(res.data.name +" Student Account " + res.statusText )
@@ -37,7 +40,7 @@ const GenerateStudents = () => {
         })
 
 
-        const res = await fetch("http://localhost:1516/register", {
+        const res = await fetch("http://localhost:1516/student/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -82,6 +85,19 @@ const GenerateStudents = () => {
                     <div className="mb-3">
                         <label for="exampleInputEmail1" className="form-label">Student Email address</label>
                         <input onChange={(e) => setEmail(e.target.value)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+                    </div>
+                    <div className="mb-3">
+                        <label for="exampleInputEmail1" className="form-label">Student Department</label>
+                        <select onChange={(e) => setDepartment(e.target.value)} class="form-select" aria-label="Default select example">
+                        <option selected></option>
+                        <option value="UI/UX Design" >UI/UX Design</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                        <option value="Machine Learning">Machine Learning</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Graphic Design">Graphic Design</option>
+                        <option value="Robotics">Robotics</option>
+                        <option value="Robotics">Robotics</option>
+                        </select>
                     </div>
                     <div className="mb-3">
                         <label for="exampleInputPassword1" className="form-label">Student D.O.B.</label>

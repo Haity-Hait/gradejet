@@ -181,6 +181,308 @@
       "studentId": 52097,
       "password": "7puzjvde2eo",
       "id": 8
+    },
+    {
+      "name": "Phill Nelson",
+      "email": "haityhait47@gmail.com",
+      "dob": "1972-06-15",
+      "studentId": 98703,
+      "password": "s0stg6ft8n",
+      "id": 9
+    },
+    {
+      "name": "Ade Daniel",
+      "email": "boluwatifedaniell29@gmail.com",
+      "dob": "2023-05-13",
+      "studentId": 67384,
+      "password": "ttwclk1bxf",
+      "id": 10
+    },
+    {
+      "name": "Afenifere Olawale",
+      "email": "foundmissing010@gmail.com",
+      "dob": "2007-05-03",
+      "studentId": 54225,
+      "password": "amj0g3r1rxm",
+      "id": 11
+    },
+    {
+      "name": "Alagbe",
+      "email": "Pesams17@gmail.com",
+      "dob": "2023-05-10",
+      "studentId": 88486,
+      "password": "wjipuhxyiu",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 12
+    },
+    {
+      "name": "Alagbe",
+      "email": "",
+      "dob": "2023-05-10",
+      "studentId": 15270,
+      "password": "gqg9kh7z8ao",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 13
+    },
+    {
+      "name": "Alagbe",
+      "email": "",
+      "dob": "2023-05-10",
+      "studentId": 15270,
+      "password": "gqg9kh7z8ao",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 14
+    },
+    {
+      "name": "Alagbe",
+      "email": "",
+      "dob": "2023-05-10",
+      "studentId": 15270,
+      "password": "gqg9kh7z8ao",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 15
+    },
+    {
+      "name": "Fortunee",
+      "email": "",
+      "dob": "2023-05-10",
+      "studentId": 75696,
+      "password": "x8vlns8arhp",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 16
+    },
+    {
+      "name": "Omah Lay",
+      "email": "omah@gmail.com",
+      "dob": "2023-05-04",
+      "studentId": 71614,
+      "password": "p6fw6berdz",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 17
+    },
+    {
+      "name": "",
+      "email": "",
+      "dob": "",
+      "studentId": 19017,
+      "password": "dfojqcwgp6e",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "department": "Graphic Design",
+      "id": 18
+    },
+    {
+      "name": "Amapiano kenya",
+      "email": "AnnonymoushackerwaleFM@gmail.com",
+      "dob": "2023-05-27",
+      "studentId": 68158,
+      "password": "h0kcs585ape",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "department": "Graphic Design",
+      "id": 19
+    }
+  ],
+  "teacherinfo": [
+    {
+      "name": "Paul Nonso",
+      "email": "haityhait47@gmail.com",
+      "dob": "1930-06-15",
+      "teacherId": 52097,
+      "password": "7puzjvde2eo",
+      "initial": "Mr",
+      "id": 8
+    },
+    {
+      "name": "Papa",
+      "email": "haityhait47@gmail.com",
+      "dob": "2023-05-10",
+      "teacherId": 174,
+      "password": "f7s4hr1wiji",
+      "id": 9
+    },
+    {
+      "name": "dodo",
+      "email": "dodo@gmail.com",
+      "dob": "2023-05-12",
+      "teacherId": 244,
+      "password": "6hstgl9qh67",
+      "initial": "mr",
+      "level": "intern",
+      "branch": "Ghana",
+      "id": 10
+    },
+    {
+      "name": "adewale",
+      "email": "adewaleagbolahan025@gmail.com",
+      "dob": "2023-05-16",
+      "teacherId": 350,
+      "password": "yvlz1at0czd",
+      "initial": "mrs",
+      "level": "intern",
+      "branch": "Dugbe",
+      "id": 11
+    },
+    {
+      "name": "Ade Salewa",
+      "email": "sodiqabdullahi431@gmail.com",
+      "dob": "2023-05-06",
+      "teacherId": 363,
+      "password": "v22hbe8a1s",
+      "initial": "mr",
+      "level": "intern",
+      "branch": "Ogbomosho",
+      "id": 12
+    },
+    {
+      "name": "Perfect",
+      "email": "haityhait47@gmail.com",
+      "dob": "1988-07-29",
+      "teacherId": 408,
+      "password": "ki31r8avrld",
+      "initial": "mrs",
+      "level": "intern",
+      "branch": "Togo",
+      "depa": "Senegal",
+      "id": 13
+    },
+    {
+      "name": "Perfect",
+      "email": "haityhait47@gmail.com",
+      "dob": "1988-07-29",
+      "teacherId": 495,
+      "password": "o80wtvlgqo",
+      "initial": "mrs",
+      "level": "intern",
+      "branch": "Togo",
+      "depa": "Senegal",
+      "id": 14
+    },
+    {
+      "name": "Perfect",
+      "email": "haityhait47@gmail.com",
+      "dob": "1988-07-29",
+      "teacherId": 155,
+      "password": "ywzjkeuzy8f",
+      "initial": "mrs",
+      "level": "intern",
+      "branch": "Togo",
+      "depa": "data science",
+      "id": 15
+    },
+    {
+      "name": "Ajaguna Pablo",
+      "email": "haityhait47@gmail.com",
+      "dob": "2015-06-19",
+      "teacherId": 303,
+      "password": "303",
+      "initial": "mr",
+      "level": "intern",
+      "branch": "Senegal",
+      "depa": "software engineering",
+      "id": 16
+    },
+    {
+      "name": "Alarape Ruth",
+      "email": "haityhait47@gmail.com",
+      "dob": "1972-06-15",
+      "teacherId": 222,
+      "password": "s3qqe6jwso",
+      "initial": "miss",
+      "level": "full staff",
+      "branch": "Ghana",
+      "department": "graphic design",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 17
+    },
+    {
+      "name": "Bolanle Adupe",
+      "email": "haityhait47@gmail.com",
+      "dob": "1998-05-15",
+      "teacherId": 162,
+      "password": "um5mkcu1t7",
+      "initial": "miss",
+      "level": "branch manager",
+      "branch": "Togo",
+      "department": "robotics",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 18
+    },
+    {
+      "name": "Bolanle Adupe",
+      "email": "",
+      "dob": "1998-05-15",
+      "teacherId": 106,
+      "password": "ajyfsamr587",
+      "initial": "miss",
+      "level": "branch manager",
+      "branch": "Togo",
+      "department": "robotics",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 19
+    },
+    {
+      "name": "Bolanle Adupe",
+      "email": "",
+      "dob": "1998-05-15",
+      "teacherId": 106,
+      "password": "ajyfsamr587",
+      "initial": "miss",
+      "level": "branch manager",
+      "branch": "Togo",
+      "department": "robotics",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 20
+    },
+    {
+      "name": "Bolanle Adupe",
+      "email": "",
+      "dob": "1998-05-15",
+      "teacherId": 106,
+      "password": "ajyfsamr587",
+      "initial": "miss",
+      "level": "branch manager",
+      "branch": "Togo",
+      "department": "robotics",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 21
+    },
+    {
+      "name": "Bolanle Adupe",
+      "email": "",
+      "dob": "1998-05-15",
+      "teacherId": 356,
+      "password": "27fw9xqlp8q",
+      "initial": "miss",
+      "level": "branch manager",
+      "branch": "Togo",
+      "department": "robotics",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 22
+    },
+    {
+      "name": "Babatunde alarina",
+      "email": "Pesams17@gmail.com",
+      "dob": "1992-07-26",
+      "teacherId": 452,
+      "password": "liqv2bhxn6r",
+      "initial": "dr",
+      "level": "branch manager",
+      "branch": "Ogbomosho",
+      "department": "graphic design",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 23
+    },
+    {
+      "name": "Faith Blossom",
+      "email": "haityhait47@gmail.com",
+      "dob": "1946-06-13",
+      "teacherId": 435,
+      "password": "jmojqdwup1l",
+      "initial": "miss",
+      "level": "branch manager",
+      "branch": "Ogbomosho",
+      "department": "data science",
+      "image": "https://scict.edossier.app/admin/assets/img/man.png",
+      "id": 24
     }
   ]
 }
