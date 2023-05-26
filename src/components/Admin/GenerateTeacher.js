@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
@@ -20,52 +20,41 @@ const GenerateTeacher = () => {
     let teacherId = Math.floor(Math.random() * (500 - 100) + 100)
     let password = Math.random().toString(36).slice(2);
     let data = { name, email, dob, teacherId, password, initial, level, branch, department, image }
-
     const navigate = useNavigate()
     const add = async (e) => {
         e.preventDefault();
-        axios.post("http://localhost:1529/teacherinfo", data)
+        axios.post("http://localhost:1516/teacher/generate", data)
             .then((res) => {
                 console.log(res);
-                alert(res.data.name + " Teacher Account " + res.statusText)
+                alert(res.data.message)
 
+                const resa = fetch("http://localhost:1516/teacher/generate", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email
+                    })
+                }).then((resa) => {
+                    const datam = resa.json();
+                    console.log(datam);
+
+                    if (datam.status === 401 || !datam) {
+                        console.log("error")
+                    } else {
+                        setShow(true);
+                        setEmail("")
+                        console.log("Email sent")
+                    }
+                })
             }).catch((err) => {
                 console.log(err);
+                alert(err.response.data.message)
             })
-
-        axios.post("http://localhost:1516/teacher/register", data)
-            .then((res) => {
-                console.log(res);
-                // alert(res.data.name +" Student Account " + res.statusText )
-            }).catch((err) => {
-                console.log(err);
-            })
-
-        const res = await fetch("http://localhost:1516/teacher/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email
-            })
-        });
-
-        const datam = await res.json();
-        console.log(datam);
-
-        if (datam.status === 401 || !datam) {
-            console.log("error")
-        } else {
-            setShow(true);
-            setEmail("")
-            console.log("Email sent")
-            navigate("/teacher/signin", {replace: true})
-
-        }
-
     }
-    
+
+
     return (
         <div>
             {
@@ -77,7 +66,7 @@ const GenerateTeacher = () => {
                 <h3>Generate Teacher Password and ID</h3>
                 <div className="mb-3">
                     <label for="exampleInputEmail1" className="form-label">Choose a pronoun for the teacher</label>
-                    <select onChange={(e) => setInitial(e.target.value)} class="form-select" aria-label="Default select example">
+                    <select required onChange={(e) => setInitial(e.target.value)} class="form-select" aria-label="Default select example">
                         <option selected></option>
                         <option value="mr" >Mr</option>
                         <option value="mrs">Mrs</option>

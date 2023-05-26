@@ -28,9 +28,31 @@ function connect() {
 }
 connect()
 
+// Super Admin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // TEACHER
-
 // Teacher Signup
 const teacherSchema = mongoose.Schema({
     name: {

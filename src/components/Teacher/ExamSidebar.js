@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const ExamSidebar = () => {
+const ExamSidebar = ({ stt }) => {
   let [big, setBig] = useState([])
   let [search, setSearch] = useState("")
   let [count, setCount] = useState("")
@@ -17,9 +17,7 @@ const ExamSidebar = () => {
       })
   }, [])
 
-  const check = (item) => {
-    console.log(item);
-  }
+
 
   let filtered = big
     .filter((item) => {
@@ -30,7 +28,7 @@ const ExamSidebar = () => {
         item.email.toLowerCase().includes(search) || item.email.toUpperCase().includes(search) ||
         item.dob.toLowerCase().includes(search) || item.dob.toUpperCase().includes(search)
     }).map((item, index) =>
-      <div key={index.toString()} className='d-flex gog text-white align-items-center px-3 py-2 shadow'>
+      <div onClick={(e) => stt(item)} key={index.toString()} className='d-flex gog text-white align-items-center px-3 py-2 shadow'>
         <div>
           <img className='yup' src={item.image} alt="" />
         </div>
@@ -40,7 +38,6 @@ const ExamSidebar = () => {
         </div>
       </div>
     )
-
   return (
     <div>
       <div className="side ">
@@ -50,10 +47,10 @@ const ExamSidebar = () => {
         </div>
 
         <div className='text-white'>
-              
-          {filtered ? filtered : 
+
+          {filtered ? filtered :
             big.map((item, index) => (
-              <div key={index.toString()} className='d-flex gog text-white align-items-center px-3 py-2 shadow'>
+              <div onClick={(e)=>stt(item.id)} key={item.email} className='d-flex gog text-white align-items-center px-3 py-2 shadow'>
                 <div>
                   <img className='yup' src={item.image} alt="" />
                 </div>
@@ -63,6 +60,9 @@ const ExamSidebar = () => {
                 </div>
               </div>
             ))
+          }
+          {
+            big.length <= 0 || filtered.length <= 0 && <div className='baffe'><p>Student Not found</p></div>
           }
         </div>
       </div>
