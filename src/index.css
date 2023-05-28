@@ -83,6 +83,10 @@ a{
     background-color: rgba(255, 255, 255, 0.212);
     transition: all 0.5s linear;
 }
+.mara{
+    height: 90.2vh;
+    width: 100%;
+}
 .baffe{
     height: 90.2vh;
     display: flex;

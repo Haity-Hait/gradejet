@@ -29,7 +29,15 @@ function connect() {
 connect()
 
 // Super Admin
-
+const SuperAdmin = mongoose.models.superAdmin_tbs
+// app.get("/super", (req, res) => {
+//     let email = req.body.email
+//     SuperAdmin.find(email).then((res) => {
+//         console.log(res);
+//     }).catch((err) => {
+//         console.log(err);
+//     })
+// })
 
 
 

@@ -1,21 +1,22 @@
 import { useState } from "react";
 import { CONTROL, Calendar, Chart, Chart_fill, Chat, Folder, LOGO, Search, Setting, User } from "./assets/Images";
 import "./sidebar.css"
-const SideNav = () => {
+import { Link } from "react-router-dom";
+import { Favicon } from "../../../../assets/Images";
+const App = () => {
   const [open, setOpen] = useState(true);
   const Menus = [
-    { title: "Dashboard", src: Chart_fill },
-    { title: "Inbox", src: Chat },
-    { title: "Accounts", src: User, gap: true },
-    { title: "Schedule ", src:Calendar },
-    { title: "Search", src: Search },
-    { title: "Analytics", src: Chart },
-    { title: "Files ", src: Folder, gap: true },
-    { title: "Setting", src: Setting },
+    { title: "Dashboard", src: Chart_fill, to: "/superadmin/dashboard" },
+    { title: "Schools", src: Chat },
+    { title: "Generate Schools", src: User, gap: true, to: "" },
+    { title: "Schedule ", src:Calendar, to: "" },
+    { title: "Search", src: Search, to: "" },
+    { title: "Analytics", src: Chart, to: "" },
+    { title: "Files ", src: Folder, gap: true, to: "" },
+    { title: "Setting", src: Setting, to: "" },
   ];
-  const each = () => {
-    
-  }
+  
+
   return (
     <div className="flex">
       <div
@@ -32,8 +33,8 @@ const SideNav = () => {
         <div className="flex gap-x-4 items-center">
           <img
             src={LOGO}
-            className={`cursor-pointer duration-500 ${
-              open && "rotate-[360deg]"
+            className={`cursor-pointer w-10 duration-500 ${
+              open && "rotate-[360deg] "
             }`}
           />
           <h1
@@ -46,21 +47,21 @@ const SideNav = () => {
         </div>
         <ul className="pt-6">
           {Menus.map((Menu, index) => (
-            <button 
+            <Link 
+              to={Menu.to}
               key={index}
-              className={`flex papi rounded-md p-2 cursor-pointer hover:bg-light-white text-white text-sm items-center gap-x-4 
+              className={`flex papi rounded-md p-2 cursor-pointer hover:bg-light-white ${Menu.to ? "bg-light-white" : "bg-transparent"} text-white text-sm items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"}`}
             >
               <img src={Menu.src} />
               <span className={`${!open && "hidden"} origin-left duration-200`}>
                 {Menu.title}
               </span>
-            </button>
+            </Link>
           ))}
         </ul>
       </div>
-      
     </div>
   );
 };
-export default SideNav;
+export default App;
