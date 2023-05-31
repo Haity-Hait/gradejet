@@ -7,6 +7,9 @@ module.exports = {
         "dark-purple": "#081A51",
         "light-white": "rgba(255,255,255,0.17)",
       },
+      height: {
+        "papi": "90.2vh"
+      }
     },
   },
   plugins: [],

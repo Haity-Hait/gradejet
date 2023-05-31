@@ -2,7 +2,8 @@ import { Route, Routes } from "react-router";
 import GenerateTeacher from "./components/Admin/GenerateTeacher";
 import Signin from "./components/Super Admin/Signin/Signin";
 import Dashboard from "./components/Super Admin/Dashboard/Dashboard";
-import SideNav from "./components/Super Admin/Dashboard/Navbar/Sidenav";
+import GenerateSchool from "./components/Super Admin/Generate School/GenerateSchool";
+import Schools from "./components/Super Admin/Schools/Schools";
 
 
 function App() {
@@ -12,6 +13,8 @@ function App() {
         <Route path="/teacher/generate" element={<GenerateTeacher />} />
         <Route path="/superadmin/signin" element={<Signin />} />
         <Route path="/superadmin/dashboard" element={<Dashboard />} />
+        <Route path="/superadmin/generate/school" element={<GenerateSchool />} />
+        <Route path="/superadmin/school/list" element={<Schools />} />
         {/* <Route path="/superadmin/dashb" element={<SideNav />} /> */}
         {/* <Route path="/student/generate" element={<GenerateStudents />} />
         <Route path="/student/signin" element={<SigninStudents />} />

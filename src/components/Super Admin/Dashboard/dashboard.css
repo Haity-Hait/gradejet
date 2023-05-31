@@ -1,0 +1,84 @@
+.blue{
+    width: 500px;
+    text-align: center;
+    margin-top: 20px;
+    background: linear-gradient(to left, #061542, #0D297F);
+}
+.wel{
+    font-size: 34px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    color: white;
+
+}
+.nan{
+    font-size: 30px;
+    color: black;
+}
+.sch p{
+    /* white-space: nowrap; */
+}
+.sch{
+    width: 50%;
+    background-color: white;
+    border: 1px solid gainsboro;
+    padding: 8px 20px;
+    color: black;
+    display: flex;
+    font-size: 25px;
+    margin-top: 20px;
+    align-items: center;
+    font-weight: 600;
+    border-radius: 50px;
+}
+.ppaa{
+    border-radius: 100%;
+    background: linear-gradient(to left, #061542, #0D297F);
+    width: 30px;
+    height: 30px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+}
+.notice{
+    width: 400px;
+    border: 1px solid gainsboro;
+    border-radius: 8px;
+    height: 50px;
+    background-color: white;
+}
+.nes{
+    display: flex;
+    justify-content: space-between;
+    font-family: "Poppins", sans-serif;
+    padding: 10px;
+    align-items: center;
+}
+@media (max-width: 1060px) {
+    .blue{
+        width: 100%;
+        margin-right: 8px;
+    }
+    .wel{
+        font-size: 30px;
+
+    }
+    
+    .sch{
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+@media (max-width: 885px) {
+    .fall{
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 530px) {
+    .sch{
+        font-size: 20px;
+        margin: 0;
+    }
+}

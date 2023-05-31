@@ -6,7 +6,7 @@ import axios from "axios";
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate  = useNavigate()
+  const navigate = useNavigate()
   const check = (e) => {
     e.preventDefault();
     if (email == "gradejet@gmail.com") {
@@ -27,7 +27,7 @@ const Signin = () => {
       document.getElementById("email").classList.add("is-invalid");
       document.getElementById("password").classList.add("is-invalid");
     }
-    
+
   };
   return (
     <div className="body">
@@ -40,7 +40,7 @@ const Signin = () => {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email Address"
           type="email"
-          className="form-control email"
+          className="email"
         />
         <input
           id="password"
@@ -48,7 +48,7 @@ const Signin = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           type="password"
-          className="form-control password"
+          className="password"
         />
         <div className="base">
           <button onClick={(e) => check(e)} className="btn-primary">

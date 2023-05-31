@@ -2,102 +2,132 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
-   text-decoration: none;
-   margin: 0;
-   padding: 0;
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
 }
-::selection{
+#root{
+    overflow-y: hidden;
+}
+.cc{
+    overflow: hidden;
+}
+::selection {
     background-color: #181825;
     color: white;
 }
-a{
-   text-decoration: none;
+
+a {
+    text-decoration: none;
 }
-.cop{
+
+.cop {
     color: white;
     background-color: #181825;
     box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.137);
 }
-.baff{
+
+.baff {
     margin-top: -10px;
     font-size: 30px;
     color: #181825;
 }
-.pcb{
+
+.pcb {
     border-radius: 10px;
     transition: all 0.5s linear;
     overflow: hidden;
-    white-space:nowrap ;
+    white-space: nowrap;
 }
-.pcb:hover{
+
+.pcb:hover {
     background-color: rgba(255, 255, 255, 0.151);
 
 }
-.pab{
+
+.pab {
     text-transform: uppercase;
 }
-.name{
+
+.name {
     color: #6c7585;
 }
-.und{
+
+.und {
     border-bottom: 1px solid #6c758552;
     height: 40px;
     font-size: 18px;
     padding: 10px 15px;
 }
-.each{
+
+.each {
     width: 300px;
     /* height: 80px; */
     align-items: center;
     padding: 9px;
     display: flex;
 }
-.each p:nth-child(1){
+
+.each p:nth-child(1) {
     font-weight: 500;
 }
-.each span{
+
+.each span {
     font-size: 13px;
 }
-.cd{
+
+.cd {
     font-weight: 500;
 }
-.shift{
+
+.shift {
     margin-top: -14px;
     font-size: 13px;
 }
-.side{
+
+.side {
     width: 300px;
     overflow: auto;
     height: 90.2vh;
     background-color: #1d2345;
 }
-.yup{
+
+.yup {
     width: 50px;
     border-radius: 50%;
 }
-.elon{
+
+.elon {
     margin-top: -20px;
 }
-.gog:hover{
+
+.gog:hover {
     background-color: rgba(255, 255, 255, 0.212);
     transition: all 0.5s linear;
 }
-.mara{
+
+.mara {
     height: 90.2vh;
     width: 100%;
 }
-.baffe{
+
+.baffe {
     height: 90.2vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.baffe p{
+
+.baffe p {
     font-size: 30px;
     font-weight: 700;
 }
 
+.pp {
+    background-color: #f3f2ef;
+}
 
 
 
@@ -120,15 +150,17 @@ a{
 
 /* Media Queries */
 @media (max-width: 950px) {
-    .alone{
+    .alone {
         flex-wrap: wrap;
     }
-    .each{
+
+    .each {
         width: 45%;
     }
 }
+
 @media (max-width: 647px) {
-    .each{
+    .each {
         width: 100%;
     }
 }

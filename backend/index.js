@@ -29,15 +29,77 @@ function connect() {
 connect()
 
 // Super Admin
-const SuperAdmin = mongoose.models.superAdmin_tbs
-// app.get("/super", (req, res) => {
-//     let email = req.body.email
-//     SuperAdmin.find(email).then((res) => {
-//         console.log(res);
-//     }).catch((err) => {
-//         console.log(err);
-//     })
-// })
+
+// Generate Schools
+const GenerateSchoolSchema = mongoose.Schema({
+    schoolName: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    Zip: {
+        type: String,
+        required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    classMode: {
+        type: String,
+        required: true
+    },
+    image: String
+})
+const GenerateSchools = mongoose.models.schools || mongoose.model("schools", GenerateSchoolSchema)
+app.post("/generate/school", (req, res, next) => {
+    let SchoolName = req.body.schoolName
+    let email = req.body.email
+    try {
+         GenerateSchools.find({ email: email }).then((result) => {
+            if (result.length > 0) {
+                res.status(409).send({ message: "Email already exists.", status: false })
+            } else {
+                let form = new GenerateSchools(req.body)
+                form.save().then((result2) => {
+                    console.log(result2)
+                    res.status(201).send({ message: `${SchoolName} account has been created successfully`, status: true })
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }
+        })
+    } catch (error) {
+        next(error)
+    }
+})
+app.get("/get/school", (req, res) => {
+    GenerateSchools.find().then((result) => {
+        res.send({result})
+    }).catch((err) => {
+        console.log(err);
+    }) 
+})
 
 
 

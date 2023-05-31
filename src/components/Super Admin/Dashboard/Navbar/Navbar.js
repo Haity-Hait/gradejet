@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { LightLogo, NoBackLogoWhite } from '../../../../assets/Images'
+import { Link } from 'react-router-dom'
 
 const navigation = [
 //   { name: 'Dashboard', href: '#', current: true },
@@ -21,11 +22,10 @@ export default function Navbar() {
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-                {/* Mobile menu button*/}
+              {/* <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 
-              </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              </div> */}
+              <div className="flex flex-1 items-center justify-between sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                   <img
                     className="block h-8 sass lg:hidden"
@@ -47,7 +47,7 @@ export default function Navbar() {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button"
-                  className="rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="rounded-full bg-dark-purple p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="sr-only">View notifications</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
@@ -60,7 +60,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src="https://scontent.flos1-1.fna.fbcdn.net/v/t39.30808-6/319267541_906845264008304_5238079249292772610_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHoMlyXHKYdkoy80kaFcRLsyHOjOGRPpzjIc6M4ZE-nOIOlrdnJeG1AYC0XBuXhndTkcMQbp9XaWYYE3p5Ixn5K&_nc_ohc=IwjV5WqtoDEAX9xSCwm&_nc_oc=AQm3sm8tys1UQRdd8LjVQy-f2BjQn0cKTLgdyAVyEntrpL6CbIJky8BThHgV_j3sFTg&_nc_zt=23&_nc_ht=scontent.flos1-1.fna&oh=00_AfCWTWM5tHR5C4yvpRfIof_SJyC7dqlPVQmJLdNuTeoj-w&oe=647821C8"
                         alt=""
                       />
                     </Menu.Button>
@@ -81,11 +81,11 @@ export default function Navbar() {
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            Your Profile
+                            Yusuf Ayomide (Super Admin)
                           </a>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
+                      {/* <Menu.Item>
                         {({ active }) => (
                           <a
                             href="#"
@@ -94,15 +94,15 @@ export default function Navbar() {
                             Settings
                           </a>
                         )}
-                      </Menu.Item>
+                      </Menu.Item> */}
                       <Menu.Item>
                         {({ active }) => (
-                          <a
-                            href="#"
+                          <Link
+                            to="/superadmin/signin"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
                             Sign out
-                          </a>
+                          </Link>
                         )}
                       </Menu.Item>
                     </Menu.Items>
@@ -112,7 +112,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          {/* <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
@@ -129,7 +129,7 @@ export default function Navbar() {
                 </Disclosure.Button>
               ))}
             </div>
-          </Disclosure.Panel>
+          </Disclosure.Panel> */}
         </>
       )}
     </Disclosure>

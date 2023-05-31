@@ -1,0 +1,86 @@
+.icon{
+    font-size: 70px;
+}
+.fex{
+    display: flex;
+    align-items: center;
+}
+.fex h3{
+    font-size: 50px;
+    font-family: "Montserrat", sans-serif;
+    margin-left: 20px;
+    font-weight: 500;
+}
+.form-control{
+    outline: none;
+    background-color: white;
+    padding: 8px 10px; 
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+}
+.pile{
+    width: 100%;
+    margin-left: 9px;
+}
+.form-control:focus {
+    border: 3px solid #1476ff49;
+}
+.detail{
+    font-size: 18px;
+    display: flex;
+    align-items:first baseline;
+}
+.detail span{
+    color: royalblue;
+    font-size: 35px;
+}
+.plex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.set{
+    margin: 20px;
+}
+.cc{
+    overflow-y: scroll;
+    height: 90.2vh;
+    width: 100%;
+}
+.cc::-webkit-scrollbar-thumb{
+    background-color: rgba(128, 128, 128, 0.26);
+    border-radius: 50px;
+}
+.cc::-webkit-scrollbar{
+    width: 5px;
+}
+
+
+
+@media (max-width: 816px) {
+    .fex h3{
+        font-size: 40px;
+        white-space: nowrap;
+    }
+}
+@media (max-width: 727px) {
+    .fex h3{
+        font-size: 30px;
+        white-space: nowrap;
+    }
+    .plex{
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 468px) {
+    .pile, .plex, .form-control{
+        width: 100%;
+    }
+    .fex h3{
+        font-size: 20px;
+    }
+    .icon{
+        font-size: 40px;
+    }
+}

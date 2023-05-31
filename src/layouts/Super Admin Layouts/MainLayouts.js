@@ -1,14 +1,14 @@
 import React from "react";
-import SideNav from "../../components/Super Admin/Dashboard/Navbar/Sidenav";
 import Navbar from "../../components/Super Admin/Dashboard/Navbar/Navbar";
+import Sidenav from "../../components/Super Admin/Dashboard/Navbar/Sidenav";
 
 const MainLayouts = ({ children }) => {
   return (
     <div>
       <Navbar />
       <div className="flex w-100">
-        <SideNav />
-        <div className="mara pp flex-1">{children}</div>
+        <Sidenav />
+        <div className="h-screen pp flex-1">{children}</div>
       </div>
     </div>
   );
