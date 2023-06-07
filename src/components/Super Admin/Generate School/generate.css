@@ -45,7 +45,7 @@
 }
 .cc{
     overflow-y: scroll;
-    height: 90.2vh;
+    height: 100vh;
     width: 100%;
 }
 .cc::-webkit-scrollbar-thumb{

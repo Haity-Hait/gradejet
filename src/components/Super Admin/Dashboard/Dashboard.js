@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import MainLayouts from "../../../layouts/Super Admin Layouts/MainLayouts";
 import "./dashboard.css";
 import { LuSchool } from "react-icons/lu";
 import { MegaphoneIcon, MicrophoneIcon } from "@heroicons/react/24/outline";
+import axios from "axios";
 const Dashboard = () => {
+  let [amount, setAmount] = useState([])
+
+  axios.get("http://localhost:1516/get/school").then((res) => {
+    // console.log();
+    setAmount(res.data.result)
+  }).catch((err) => {
+    console.log(err);
+  })
   return (
     <MainLayouts>
       <div className=" px-3">
@@ -14,7 +23,7 @@ const Dashboard = () => {
           <div className="sch">
             <LuSchool className="nan" />
             <p className=" mx-4">Total Number of Schools</p>
-            <p className="ppaa ">0</p>
+            <p className="ppaa ">{amount.length}</p>
           </div>
         </div>
         <div className=" mt-20">

@@ -14,10 +14,12 @@ const GenerateSchool = () => {
     const [phone, setPhone] = useState("")
     const [classMode, setClassMode] = useState("")
     let image = "https://u-static.fotor.com/images/text-to-image/result/PRO-e11aad76d1a44986b5288d35605d8547.jpg@1200w_1200h_1s.src"
-    let data = { schoolName, email, password, address, city, Zip, country, phone, image, classMode }
+    let date = new Date()
+    let Year = date.getFullYear()
+    let Month = date.toLocaleString('default', { month: 'long' });
+    let data = { schoolName, email, password, address, city, Zip, country, phone, image, classMode, Year, Month }
     const add = (e) => {
         e.preventDefault()
-
         axios.post("http://localhost:1516/generate/school", data).then((res) => {
             alert(res.data.message)
         }).catch((err) => {
@@ -42,7 +44,7 @@ const GenerateSchool = () => {
                                 <p className="detail">
                                     School Name <span>*</span>
                                 </p>
-                                <input onChange={(e) => setSchoolName(e.target.value)} required placeholder="School Name" type="text" className="password" />
+                                <input onChange={(e) => setSchoolName(e.target.value)} required placeholder="School Name" type="text" className="form-control" />
                             </div>
                             <div className="plex">
                                 <div className="pile">
@@ -98,6 +100,7 @@ const GenerateSchool = () => {
                                     <select className="form-control" onChange={(e) => setClassMode(e.target.value)}>
                                         <option value="Physical">Physical</option>
                                         <option value="Virtual">Virtual</option>
+                                        <option value="Both">Both</option>
                                     </select>
                                 </div>
                             </div>

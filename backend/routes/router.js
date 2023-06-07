@@ -40,6 +40,6 @@ router.post("/student/register", (req, res) => {
 
 
 
-
+    
 
 module.exports = router;

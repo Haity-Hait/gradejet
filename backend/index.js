@@ -69,14 +69,17 @@ const GenerateSchoolSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    image: String
+    image: String,
+    Year: String,
+    Month: String
 })
 const GenerateSchools = mongoose.models.schools || mongoose.model("schools", GenerateSchoolSchema)
 app.post("/generate/school", (req, res, next) => {
     let SchoolName = req.body.schoolName
     let email = req.body.email
+    let data = req.body
     try {
-         GenerateSchools.find({ email: email }).then((result) => {
+        GenerateSchools.find({ email: email }).then((result) => {
             if (result.length > 0) {
                 res.status(409).send({ message: "Email already exists.", status: false })
             } else {
@@ -84,8 +87,43 @@ app.post("/generate/school", (req, res, next) => {
                 form.save().then((result2) => {
                     console.log(result2)
                     res.status(201).send({ message: `${SchoolName} account has been created successfully`, status: true })
+                    
+                    const template = `
+                        <h3>Wow Congratulations 🎉✨ ${data.schoolName},</h3>
+                        <br />
+                        <p>Your school has been approved by GradeJet Management System.</p>
+                        <p>Here's Your Login Details to the website.</p>
+                        <p>Password: ${data.password}</p>
+                        <code>Signed by management.</code>
+                    `
+                    // Send Mail
+                    const transporter = nodemailer.createTransport({
+                        service: "gmail",
+                        auth: {
+                            user: process.env.EMAIL,
+                            pass: process.env.PASSWORD
+                        }
+                    });
+
+                    const mailOptions = {
+                        from: process.env.EMAIL,
+                        to: data.email,
+                        subject: "GradeJet School Management System",
+                        html: template
+                    };
+
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            console.log("Error" + error)
+                        } else {
+                            console.log("Email sent:" + info.response);
+                            res.status(201).json({ status: 201, info })
+                        }
+                    })
+
                 }).catch((error) => {
                     console.log(error)
+                    res.status(401).json({ status: 401, error })
                 })
             }
         })
@@ -93,18 +131,49 @@ app.post("/generate/school", (req, res, next) => {
         next(error)
     }
 })
+
 app.get("/get/school", (req, res) => {
     GenerateSchools.find().then((result) => {
-        res.send({result})
+        res.status(201).send({ result })
     }).catch((err) => {
         console.log(err);
-    }) 
+        res.status(401).send({ err })
+    })
+})
+// Dynamic Router
+app.get("/get/school/:id", (req, res) => {
+    let id = req.params.id
+    GenerateSchools.findOne({_id:id}).then((result) => {
+        res.status(201).send({ result })
+    }).catch((err) => {
+        console.log(err);
+        res.status(401).send({ err })
+    })
 })
 
-
-
-
-
+// Notice 
+const noticeSchema = mongoose.Schema({
+    to: String,
+    from: String,
+    notice: {
+        type: String,
+        required: true
+    }
+})
+const noticeModel = mongoose.models.notices || mongoose.model("notices", noticeSchema)
+app.post("/superadmin/notice", (req, res) => {
+    let data = req.body
+    let form = new noticeModel(data)
+    try {
+        form.save().then((result) => {
+            res.status(201).send({ message: result })
+        }).catch((err) => {
+            res.status(401).send({ message: "Validation Failed" })
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 
 
@@ -123,6 +192,7 @@ app.get("/get/school", (req, res) => {
 
 
 // TEACHER
+
 // Teacher Signup
 const teacherSchema = mongoose.Schema({
     name: {

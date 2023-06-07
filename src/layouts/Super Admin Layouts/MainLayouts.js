@@ -8,7 +8,7 @@ const MainLayouts = ({ children }) => {
       <Navbar />
       <div className="flex w-100">
         <Sidenav />
-        <div className="h-screen pp flex-1">{children}</div>
+        <div className="flex-1">{children}</div>
       </div>
     </div>
   );

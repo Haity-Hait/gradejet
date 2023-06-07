@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { LightLogo, NoBackLogoWhite } from '../../../../assets/Images'
+import { LightLogo, MyAvatar, NoBackLogoWhite } from '../../../../assets/Images'
 import { Link } from 'react-router-dom'
 
 const navigation = [
@@ -60,7 +60,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://scontent.flos1-1.fna.fbcdn.net/v/t39.30808-6/319267541_906845264008304_5238079249292772610_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeHoMlyXHKYdkoy80kaFcRLsyHOjOGRPpzjIc6M4ZE-nOIOlrdnJeG1AYC0XBuXhndTkcMQbp9XaWYYE3p5Ixn5K&_nc_ohc=IwjV5WqtoDEAX9xSCwm&_nc_oc=AQm3sm8tys1UQRdd8LjVQy-f2BjQn0cKTLgdyAVyEntrpL6CbIJky8BThHgV_j3sFTg&_nc_zt=23&_nc_ht=scontent.flos1-1.fna&oh=00_AfCWTWM5tHR5C4yvpRfIof_SJyC7dqlPVQmJLdNuTeoj-w&oe=647821C8"
+                        src={MyAvatar}
                         alt=""
                       />
                     </Menu.Button>

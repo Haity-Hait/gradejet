@@ -4,6 +4,9 @@ import Signin from "./components/Super Admin/Signin/Signin";
 import Dashboard from "./components/Super Admin/Dashboard/Dashboard";
 import GenerateSchool from "./components/Super Admin/Generate School/GenerateSchool";
 import Schools from "./components/Super Admin/Schools/Schools";
+import ShowOne from "./components/Super Admin/Schools/ShowOne";
+import Notice from "./components/Super Admin/Notice/Notice";
+import UnderConstructionSuperAdmin from "./components/Under Construction/UnderConstructionSuperAdmin";
 
 
 function App() {
@@ -15,6 +18,9 @@ function App() {
         <Route path="/superadmin/dashboard" element={<Dashboard />} />
         <Route path="/superadmin/generate/school" element={<GenerateSchool />} />
         <Route path="/superadmin/school/list" element={<Schools />} />
+        <Route path="/superadmin/school/:id" element={<ShowOne />} />
+        <Route path="/superadmin/notices" element={<Notice />} />
+        <Route path="/superadmin/construct" element={<UnderConstructionSuperAdmin />} />
         {/* <Route path="/superadmin/dashb" element={<SideNav />} /> */}
         {/* <Route path="/student/generate" element={<GenerateStudents />} />
         <Route path="/student/signin" element={<SigninStudents />} />

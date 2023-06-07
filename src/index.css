@@ -8,12 +8,10 @@
     margin: 0;
     padding: 0;
 }
-#root{
-    overflow-y: hidden;
-}
-.cc{
+/* #root{
     overflow: hidden;
-}
+} */
+
 ::selection {
     background-color: #181825;
     color: white;
@@ -90,7 +88,7 @@ a {
 .side {
     width: 300px;
     overflow: auto;
-    height: 90.2vh;
+    /* height: 90.2vh; */
     background-color: #1d2345;
 }
 
@@ -108,10 +106,10 @@ a {
     transition: all 0.5s linear;
 }
 
-.mara {
+/* .mara {
     height: 90.2vh;
     width: 100%;
-}
+} */
 
 .baffe {
     height: 90.2vh;

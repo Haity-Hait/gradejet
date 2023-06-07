@@ -7,13 +7,11 @@ const Sidenav = () => {
   const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Dashboard", src: Chart_fill, to: "/superadmin/dashboard" },
-    { title: "Schools", src: Chat, to: "/superadmin/school/list"},
-    { title: "Generate Schools", src: User, gap: true, to: "/superadmin/generate/school" },
-    { title: "Schedule ", src:Calendar, to: "" },
-    { title: "Notice", src: Search, to: "" },
-    { title: "Analytics", src: Chart, to: "" },
-    { title: "Files ", src: Folder, gap: true, to: "" },
-    { title: "Setting", src: Setting, to: "" },
+    { title: "Notice",  src: Chart, to: "/superadmin/notices" },
+    { title: "Schools", src: Chat, gap: true, to: "/superadmin/school/list"},
+    { title: "Generate Schools", src: User,  to: "/superadmin/generate/school" },
+    { title: "Schedule ", gap: true, src:Calendar, to: "" },
+    { title: "Files ", src: Folder,  to: "" },
   ];
   
   
@@ -21,8 +19,8 @@ const Sidenav = () => {
     <div className="flex">
       <div
         className={` ${
-          open ? "w-72" : "w-20 "
-        } bg-dark-purple h-screen  p-5  pt-8 relative duration-300`}
+          open ? "w-20" : "w-72"
+        } bg-dark-purple pros  p-4  pt-3 relative duration-300`}
       >
         <img
           src={CONTROL}
@@ -39,13 +37,13 @@ const Sidenav = () => {
           />
           <h1
             className={`text-white origin-left font-medium text-xl duration-200 ${
-              !open && "scale-0"
+              open && "scale-0"
             }`}
           >
             GradeJet System
           </h1>
         </div>
-        <ul className="pt-6">
+        <ul className="pt-5">
           {Menus.map((Menu, index) => (
             <Link 
               to={Menu.to}
@@ -55,7 +53,7 @@ const Sidenav = () => {
               ${Menu.gap ? "mt-9" : "mt-2"}`}
             >
               <img src={Menu.src} />
-              <span className={`${!open && "hidden"} origin-left duration-200`}>
+              <span className={`${open && "hidden"} origin-left duration-200`}>
                 {Menu.title}
               </span>
             </Link>
