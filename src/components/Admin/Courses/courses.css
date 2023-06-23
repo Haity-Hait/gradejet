@@ -1,0 +1,20 @@
+.ses{
+    width: 95%;
+}
+.bute{
+    color: white;
+    font-size: 20px;
+    font-weight: bolder;
+    accent-color: white;
+}
+.oo{
+    display: flex;
+    align-items: center;
+    width: 100px;
+}
+.popt{
+    font-size: 300px;
+    color: black;
+    width: 50px;
+    background-color: peru;
+}

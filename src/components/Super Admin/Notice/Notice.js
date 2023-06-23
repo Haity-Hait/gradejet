@@ -12,7 +12,7 @@ const Notice = () => {
     let data = { from, to, notice, date, time }
     const send = () => {
         console.log(time);
-        axios.post("http://localhost:1516/superadmin/notice", data).then((res) => {
+        axios.post("http://localhost:1516/notice", data).then((res) => {
             alert(`Notice sent to all ${res.data.message.to}`);
         }).catch((err) => {
             alert(err.response.data.message);

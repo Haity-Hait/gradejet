@@ -17,8 +17,6 @@ const ExamSidebar = ({ stt }) => {
       })
   }, [])
 
-
-
   let filtered = big
     .filter((item) => {
       return search.toLowerCase() === ''

@@ -16,8 +16,10 @@ const GenerateSchool = () => {
     let image = "https://u-static.fotor.com/images/text-to-image/result/PRO-e11aad76d1a44986b5288d35605d8547.jpg@1200w_1200h_1s.src"
     let date = new Date()
     let Year = date.getFullYear()
+    let folllower = 0
+    let likes = 0
     let Month = date.toLocaleString('default', { month: 'long' });
-    let data = { schoolName, email, password, address, city, Zip, country, phone, image, classMode, Year, Month }
+    let data = { schoolName, email, password, address, city, Zip, country, folllower, likes, phone, image, classMode, Year, Month }
     const add = (e) => {
         e.preventDefault()
         axios.post("http://localhost:1516/generate/school", data).then((res) => {

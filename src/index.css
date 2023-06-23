@@ -8,10 +8,12 @@
     margin: 0;
     padding: 0;
 }
-/* #root{
-    overflow: hidden;
-} */
-
+.bfr{
+    width: 100%;
+}
+.lol{
+    text-transform: capitalize;
+}
 ::selection {
     background-color: #181825;
     color: white;
@@ -126,7 +128,14 @@ a {
 .pp {
     background-color: #f3f2ef;
 }
-
+.from, .date, .noticee, .time{
+    font-family: "Poppins", sans-serif;
+}
+.time{
+    width: 100%;
+    text-align: right;
+    font-family: cursive;
+}
 
 
 

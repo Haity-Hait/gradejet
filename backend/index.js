@@ -5,11 +5,12 @@ const cors = require("cors");
 const router = require("./routes/router");
 const nodemailer = require("nodemailer");
 const port = 1516;
-const mongoose = require("mongoose")
-const bodyParser = require("body-parser")
-app.use(bodyParser.json())
+const mongoose = require("mongoose");
+const jsonwebtoken = require("jsonwebtoken");
+const bodyParser = require("body-parser");
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-
+const SECRET = process.env.JWT_SECRET
 // middle ware
 app.use(express.json());
 app.use(cors());
@@ -71,7 +72,9 @@ const GenerateSchoolSchema = mongoose.Schema({
     },
     image: String,
     Year: String,
-    Month: String
+    Month: String,
+    folllower: String,
+    likes: String
 })
 const GenerateSchools = mongoose.models.schools || mongoose.model("schools", GenerateSchoolSchema)
 app.post("/generate/school", (req, res, next) => {
@@ -87,7 +90,7 @@ app.post("/generate/school", (req, res, next) => {
                 form.save().then((result2) => {
                     console.log(result2)
                     res.status(201).send({ message: `${SchoolName} account has been created successfully`, status: true })
-                    
+
                     const template = `
                         <h3>Wow Congratulations 🎉✨ ${data.schoolName},</h3>
                         <br />
@@ -140,10 +143,58 @@ app.get("/get/school", (req, res) => {
         res.status(401).send({ err })
     })
 })
+
+// Get One School || Signin Admin
+app.post("/get/school/v1", (req, res) => {
+    let email = req.body.email
+    let password = req.body.password
+    GenerateSchools.findOne({ email: email }).then((result) => {
+        if (result == null) {
+            res.status(409).send({ message: "You do not have an account with us" })
+        } else {
+            if (password == result.password) {
+                const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "60m" })
+                console.log(token);
+                res.status(201).send({ admin: result, status: true, message: "Valid Authentication", token: token })
+            } else {
+                res.status(401).send({ status: false, message: "Invalid Password" })
+            }
+        }
+    }).catch((err) => {
+        res.status(401).send({ message: "Internal Server Error" })
+        console.log(err);
+    })
+})
+// Verify Token
+app.get("/verifytoken", (req, res) => {
+    const token = req.headers.authorization.split(" ")[1]
+    console.log(token)
+    jsonwebtoken.verify(token, SECRET, (error, decoded) => {
+        if (error) {
+            res.status(401).send({ message: "Session Over. You will be logged out right now.", status: false })
+            console.log(error)
+        } else {
+            console.log(decoded)
+            let email = decoded.email
+            if (decoded != undefined) {
+                GenerateSchools.findOne({ email: email }).then((result) => {
+                    console.log(result)
+                    res.status(200).send({ status: true, data: result })
+                })
+            } else {
+                res.status(401).send({ message: "Unauthorized", status: false })
+            }
+        }
+    })
+})
+
+
+
+
 // Dynamic Router
 app.get("/get/school/:id", (req, res) => {
     let id = req.params.id
-    GenerateSchools.findOne({_id:id}).then((result) => {
+    GenerateSchools.findOne({ _id: id }).then((result) => {
         res.status(201).send({ result })
     }).catch((err) => {
         console.log(err);
@@ -158,10 +209,12 @@ const noticeSchema = mongoose.Schema({
     notice: {
         type: String,
         required: true
-    }
+    },
+    date: String,
+    time: String
 })
 const noticeModel = mongoose.models.notices || mongoose.model("notices", noticeSchema)
-app.post("/superadmin/notice", (req, res) => {
+app.post("/notice", (req, res) => {
     let data = req.body
     let form = new noticeModel(data)
     try {
@@ -174,14 +227,63 @@ app.post("/superadmin/notice", (req, res) => {
         console.log(error);
     }
 })
+// Notice To Admins
+app.get("/get/admin/notice", (req, res) => {
+    noticeModel.find({ to: "admins" }).then((result) => {
+        console.log(result);
+        res.status(201).send({ notice: result, status: true })
+    }).catch((error) => {
+        res.status(401).send({ error: error, status: false })
+        console.log(error);
+    })
+})
 
 
+// ADMIN
+// Courses
+const courseSchema = mongoose.Schema({
+    adminEmail: String,
+    courseDetails:[
+        {
+            courseName: {
+                type: String
+                // unique: true
+            },
+            courseType: String
+        }
+    ]
+})
+const CourseModel = mongoose.models.courses || mongoose.model("courses", courseSchema)
+app.post("/courses", (req, res) => {
+    let data = req.body
+    let courseName = data.courseName
+    let adminEmail = data.adminEmail
+    let form = new CourseModel(data)
+    try {
+        form.save().then((result) => {
+            console.log(result);
+            // CourseModel.updateOne({$push: { courseName }})
+            res.status(201).send({ message: `${courseName} has been Created.` })
+        }).catch((err) => {
+            console.log(err);
+            res.status(401).send({ message: `${courseName} has not been Created` })
+        })
+    } catch (error) {
+        res.status(401).send({ message: `${courseName} has not been Created Due to an Internal Server Error` })
+    }
+})
 
+// Get Courses
 
-
-
-
-
+app.post("/get/each/courses", (req, res) => {
+    let adminEmail = req.body.adminEmail
+    CourseModel.find({ adminEmail: adminEmail }).then((result) => {
+        res.status(201).send({ message: result, status: true })
+    }).catch((error) => {
+        console.log(error);
+        res.status(401).send({ message: error, status: false })
+    })
+})
 
 
 

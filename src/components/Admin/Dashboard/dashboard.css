@@ -1,0 +1,40 @@
+.bop, .meo{
+    font-size: 40px;
+    font-weight: 500;
+    color: #081a51;
+    font-family: "Poppins", sans-serif;
+}
+.joj{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.flip{
+    width: fit-content;
+}
+.nes{
+    position: sticky;
+    background-color: #F3F2EF;
+    top: 0;
+}
+.kiss{
+    width: 40%;
+    height:300px;
+    overflow: auto;
+}
+.kiss::-webkit-scrollbar{
+    background-color: white;
+    width: 3px;
+}
+.kiss::-webkit-scrollbar-thumb{
+    background-color: #969592;
+    border-radius: 10px;
+    height: 100px;
+}
+.mn{
+    font-size: 38px;
+    font-weight: 800;
+    /* background-color: aqua; */
+    width: 400px;
+    color: #081a51;
+    font-family: "Montserrat", sans-serif;
+}
