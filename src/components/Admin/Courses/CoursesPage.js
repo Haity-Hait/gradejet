@@ -15,10 +15,19 @@ const CoursesPage = () => {
         axios.post("http://localhost:1516/get/each/courses", data).then((res) => {
             let data2 = res.data.message
             setCourses(data2)
+            console.log(courses);
         }).catch((err) => {
             console.log(err);
         })
     })
+    const ded = (id) => {
+        console.log(id);
+        axios.delete(`http://localhost:1516/delete/course/${id}`).then((res) => {
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        })
+    }
     return (
         <div>
             <div class="flex flex-col">
@@ -55,9 +64,9 @@ const CoursesPage = () => {
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     {item.courseType}
                                                 </td>
-                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    <button><TrashIcon className='popt' /></button>
-                                                    {/* <button><PencilIcon /></button> */}
+                                                <td class="text-sm flex gap-3 text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                                    <button onClick={() => ded(item._id)}><TrashIcon className='popt ' /></button>
+                                                    <button><PencilIcon className='popt' /></button>
                                                 </td>
                                             </tr>
                                         ))

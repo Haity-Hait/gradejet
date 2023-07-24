@@ -153,7 +153,7 @@ app.post("/get/school/v1", (req, res) => {
             res.status(409).send({ message: "You do not have an account with us" })
         } else {
             if (password == result.password) {
-                const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "60m" })
+                const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "1440m" })
                 console.log(token);
                 res.status(201).send({ admin: result, status: true, message: "Valid Authentication", token: token })
             } else {
@@ -162,7 +162,7 @@ app.post("/get/school/v1", (req, res) => {
         }
     }).catch((err) => {
         res.status(401).send({ message: "Internal Server Error" })
-        console.log(err);
+        console.log(err)
     })
 })
 // Verify Token
@@ -242,34 +242,71 @@ app.get("/get/admin/notice", (req, res) => {
 // ADMIN
 // Courses
 const courseSchema = mongoose.Schema({
-    adminEmail: String,
-    courseDetails:[
+    adminEmail: {
+        unique: true,
+        type: String,
+    },
+    courseDetails: [
         {
             courseName: {
-                type: String
-                // unique: true
+                type: String,
+                unique: true
             },
             courseType: String
         }
     ]
 })
 const CourseModel = mongoose.models.courses || mongoose.model("courses", courseSchema)
-app.post("/courses", (req, res) => {
+app.post("/courses", async (req, res, next) => {
     let data = req.body
     let courseName = data.courseName
+    let courseType = data.courseType
     let adminEmail = data.adminEmail
     let form = new CourseModel(data)
+
     try {
-        form.save().then((result) => {
+        CourseModel.find({ adminEmail: adminEmail }).then((result) => {
             console.log(result);
-            // CourseModel.updateOne({$push: { courseName }})
-            res.status(201).send({ message: `${courseName} has been Created.` })
-        }).catch((err) => {
-            console.log(err);
-            res.status(401).send({ message: `${courseName} has not been Created` })
+            form.save().then((result) => {
+                console.log(result);
+                CourseModel.updateOne({ adminEmail: adminEmail }, { $push: { courseDetails: { courseName: courseName, courseType: courseType } } }).then((resui) => {
+                    console.log(resui)
+                    return res.status(201).send({ message: `${courseName} has been Created.` })
+                })
+            }).catch((err) => {
+                console.log(err);
+                next()
+                return res.status(401).send({ message: `${courseName} has not been Created` })
+            })
+            // if(!result){
+
+            // }
+            // if (result) {
+            //     result.map((item, index) => {
+            //         let Mapped = item.courseDetails
+            //         Mapped.map((items, index) => {
+            //             let mappedCourseName = items.courseName
+            //             if (courseName == mappedCourseName) {
+            //                 return res.status(401).send({ message: `${courseName} has been offered in the school already` })
+            //             }
+            //             CourseModel.findOneAndUpdate({ adminEmail: adminEmail }, { $push: { courseDetails: { courseName: courseName, courseType: courseType } } }).then((resui) => {
+            //                 return res.status(201).send({ message: `${courseName} has been Created.` })
+            //             })
+            //                 .catch((err) => {
+            //                     console.log(err);
+            //                     next()
+            //                     return res.status(401).send({ message: `${courseName} has not been Created.` })
+            //                 })
+
+            //         })
+
+            //     })
+            // }
+            
         })
     } catch (error) {
-        res.status(401).send({ message: `${courseName} has not been Created Due to an Internal Server Error` })
+        next()
+        return res.status(401).send({ message: `${courseName} has not been Created Due to an Internal Server Error` })
     }
 })
 
@@ -278,15 +315,35 @@ app.post("/courses", (req, res) => {
 app.post("/get/each/courses", (req, res) => {
     let adminEmail = req.body.adminEmail
     CourseModel.find({ adminEmail: adminEmail }).then((result) => {
-        res.status(201).send({ message: result, status: true })
+        console.log(result);
+        result.map((item) => {
+            let dee = item.courseDetails
+
+            res.status(201).send({ message: dee, status: true })
+            console.log();
+        })
     }).catch((error) => {
         console.log(error);
         res.status(401).send({ message: error, status: false })
     })
 })
 
+// Delete Course
+app.delete("/delete/course/:id", async (req, res) => {
+    // let id = req.body.id
+    let id = req.params.id
+    try {
+        await CourseModel.findByIdAndDelete(id).then((resu) => {
+            console.log("Deleted");
+            res.status(201).send({ message: "Deleted Successfully" })
+        }).catch((err) => {
+            res.status(401).send({ message: "Deleted gone wrong" })
+            console.log("Not Deleted");
+        })
+    } catch (error) {
 
-
+    }
+})
 
 
 
