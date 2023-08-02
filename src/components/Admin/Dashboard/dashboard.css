@@ -38,3 +38,58 @@
     color: #081a51;
     font-family: "Montserrat", sans-serif;
 }
+.yur{
+    padding: 0 3%;
+}
+.waist{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.fall{
+    /* flex-wrap: wrap; */
+    width: 100%;
+}
+
+@media (max-width: 1115px) {
+    .mn{
+        width: 100%;
+    }
+}
+@media (max-width: 1056px) {
+    .lin{
+        flex-wrap: wrap;
+    }
+    .fall{
+        flex-wrap: wrap;
+    }
+    .flip{
+        width: 100%;
+    }
+}
+@media (max-width: 744px) {
+    .e{
+        display: none;
+    }
+    .mn{
+        font-size: 30px;
+    }
+}
+@media (max-width: 682px) {
+    .fall{
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 610px) {
+   .bop{
+        font-size:35px;
+   }
+}
+@media (max-width: 370px) {
+   .bop{
+        font-size:30px;
+   }
+   .yur{
+    padding: 0;
+   }
+}

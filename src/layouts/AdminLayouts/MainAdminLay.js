@@ -3,22 +3,20 @@ import SidebarAdmin from "../../components/Admin/Sidebar/SidebarAdmin";
 import VerifyToken from "../../components/VerifyToken";
 import { useNavigate } from "react-router";
 import Modal from "../../components/Admin/Modal/Modal";
+import Loader from "../../Loader";
 const MainAdminLay = ({ children }) => {
-  const { verifyData, expired } = VerifyToken();
+  const { verifyData, expired, LogOut } = VerifyToken();
   const navigate = useNavigate();
-  const LogOut = () => {
-    localStorage.removeItem("token");
-    navigate("/admin/signin");
-  };
-
   
+    // if(!verifyData){
+
+    // }
+
     // setInterval(useEffect(() => {
-    //   if (!expired) {
-    //     console.log(expired);
-    //   }else{
-    //     console.log(expired);
+    //   if (expired) {
+    //     LogOut()
     //   }
-    // }), 1000);
+    // }), 0);
 
   return (
     <div>
@@ -32,8 +30,10 @@ const MainAdminLay = ({ children }) => {
         </div>
         <div className="flex-1 ">{children}</div>
       </div>
-      {expired ? <Modal Myclick={LogOut} Content={expired} /> : ""}
-      {/* {expired ? navigate("/admin/signin") : ""} */}
+      
+      {/* {expired ? <Modal Myclick={LogOut} Content={expired} /> : ""} */}
+      {verifyData ? "" : <Loader/> }
+      {expired ? LogOut() : ""}
     </div>
   );
 };

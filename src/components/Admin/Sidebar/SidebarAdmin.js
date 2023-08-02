@@ -3,6 +3,7 @@ import "./sidebaradmin.css"
 import { Link } from "react-router-dom";
 import { CONTROL, Calendar, Chart, Chart_fill, Chat, Folder,  User } from "../../Super Admin/Dashboard/Navbar/assets/Images";
 import { BiLogOut } from "react-icons/bi";
+import { Icon } from '@iconify/react';
 // import { LuLogOut } from "react-icons/lu";
 const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
   const [open, setOpen] = useState(true);
@@ -10,10 +11,10 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
     { title: "Dashboard", src: Chart_fill, to: "/admin/dashboard" },
     { title: "Notice", src: Chart, to: "/admin/notice" },
     { title: "Teachers", gap: true, src: User, to: "/admin/generate/teacher" },
-    { title: "Students", src: User, to: "" },
+    { title: "Students", src: User, to: "/admin/generate/student" },
     // { title: "", src: Chat, gap: true, to: "" },
-    { title: "", src: Chat, gap: true, to: "" },
-    { title: "Courses ", gap: true, src: Calendar, to: "/admin/courses" },
+    { title: "Notification", src: Chat, gap: true, to: "" },
+    { title: "Courses ", gap: true, src: Chart_fill, to: "/admin/courses" },
     { title: "Files ", src: Folder, to: "" },
   ];
 
@@ -52,7 +53,12 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
               className={`flex papi rounded-md p-2 cursor-pointer hover:bg-light-white text-white text-sm items-center gap-x-4 
               ${Menu.gap ? "mt-9" : "mt-2"}`}
             >
-              <img className="" src={Menu.src} />
+              {
+                Menu.icon ? Menu.icon : " "
+              }
+              {
+                <img className="" src={Menu.src} /> ? <img className="" src={Menu.src} /> : " "
+              }
               <span className={`${open && "hidden"} origin-left duration-200`}>
                 {Menu.title}
               </span>

@@ -74,7 +74,8 @@ const GenerateSchoolSchema = mongoose.Schema({
     Year: String,
     Month: String,
     folllower: String,
-    likes: String
+    likes: String,
+    schoolLink: String
 })
 const GenerateSchools = mongoose.models.schools || mongoose.model("schools", GenerateSchoolSchema)
 app.post("/generate/school", (req, res, next) => {
@@ -153,7 +154,7 @@ app.post("/get/school/v1", (req, res) => {
             res.status(409).send({ message: "You do not have an account with us" })
         } else {
             if (password == result.password) {
-                const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "1440m" })
+                const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "1d" })
                 console.log(token);
                 res.status(201).send({ admin: result, status: true, message: "Valid Authentication", token: token })
             } else {
@@ -203,6 +204,8 @@ app.get("/get/school/:id", (req, res) => {
 })
 
 // Notice 
+
+
 const noticeSchema = mongoose.Schema({
     to: String,
     from: String,
@@ -211,9 +214,11 @@ const noticeSchema = mongoose.Schema({
         required: true
     },
     date: String,
-    time: String
+    time: String,
+    sender: String
 })
 const noticeModel = mongoose.models.notices || mongoose.model("notices", noticeSchema)
+// Notice to all
 app.post("/notice", (req, res) => {
     let data = req.body
     let form = new noticeModel(data)
@@ -227,7 +232,9 @@ app.post("/notice", (req, res) => {
         console.log(error);
     }
 })
-// Notice To Admins
+
+
+// Get Admins Notice
 app.get("/get/admin/notice", (req, res) => {
     noticeModel.find({ to: "admins" }).then((result) => {
         console.log(result);
@@ -239,170 +246,65 @@ app.get("/get/admin/notice", (req, res) => {
 })
 
 
-// ADMIN
 // Courses
 const courseSchema = mongoose.Schema({
-    adminEmail: {
-        unique: true,
-        type: String,
-    },
-    courseDetails: [
-        {
-            courseName: {
-                type: String,
-                unique: true
-            },
-            courseType: String
-        }
-    ]
+    courseName: String,
+    courseTime: String,
+    courseType: String,
+    schoolName: String
 })
 const CourseModel = mongoose.models.courses || mongoose.model("courses", courseSchema)
 app.post("/courses", async (req, res, next) => {
+    let schoolName = req.body.schoolName
     let data = req.body
-    let courseName = data.courseName
-    let courseType = data.courseType
-    let adminEmail = data.adminEmail
-    let form = new CourseModel(data)
-
-    try {
-        CourseModel.find({ adminEmail: adminEmail }).then((result) => {
-            console.log(result);
-            form.save().then((result) => {
-                console.log(result);
-                CourseModel.updateOne({ adminEmail: adminEmail }, { $push: { courseDetails: { courseName: courseName, courseType: courseType } } }).then((resui) => {
-                    console.log(resui)
-                    return res.status(201).send({ message: `${courseName} has been Created.` })
-                })
-            }).catch((err) => {
-                console.log(err);
-                next()
-                return res.status(401).send({ message: `${courseName} has not been Created` })
-            })
-            // if(!result){
-
-            // }
-            // if (result) {
-            //     result.map((item, index) => {
-            //         let Mapped = item.courseDetails
-            //         Mapped.map((items, index) => {
-            //             let mappedCourseName = items.courseName
-            //             if (courseName == mappedCourseName) {
-            //                 return res.status(401).send({ message: `${courseName} has been offered in the school already` })
-            //             }
-            //             CourseModel.findOneAndUpdate({ adminEmail: adminEmail }, { $push: { courseDetails: { courseName: courseName, courseType: courseType } } }).then((resui) => {
-            //                 return res.status(201).send({ message: `${courseName} has been Created.` })
-            //             })
-            //                 .catch((err) => {
-            //                     console.log(err);
-            //                     next()
-            //                     return res.status(401).send({ message: `${courseName} has not been Created.` })
-            //                 })
-
-            //         })
-
-            //     })
-            // }
-            
-        })
-    } catch (error) {
-        next()
-        return res.status(401).send({ message: `${courseName} has not been Created Due to an Internal Server Error` })
-    }
-})
-
-// Get Courses
-
-app.post("/get/each/courses", (req, res) => {
-    let adminEmail = req.body.adminEmail
-    CourseModel.find({ adminEmail: adminEmail }).then((result) => {
-        console.log(result);
-        result.map((item) => {
-            let dee = item.courseDetails
-
-            res.status(201).send({ message: dee, status: true })
-            console.log();
-        })
-    }).catch((error) => {
-        console.log(error);
-        res.status(401).send({ message: error, status: false })
+    let form = CourseModel(data)
+    // form.save().then((result) => {
+    //     res.status(201).send({ message: result })
+    // }).catch((err) => {
+    //     console.log(err);
+    // })
+    CourseModel.find({ schoolName: schoolName }).then((result) => {
+        if (result) {
+            let filter = result.filter((val) => val.courseName)
+            console.log(filter);
+        }
     })
 })
 
-// Delete Course
-app.delete("/delete/course/:id", async (req, res) => {
-    // let id = req.body.id
-    let id = req.params.id
-    try {
-        await CourseModel.findByIdAndDelete(id).then((resu) => {
-            console.log("Deleted");
-            res.status(201).send({ message: "Deleted Successfully" })
-        }).catch((err) => {
-            res.status(401).send({ message: "Deleted gone wrong" })
-            console.log("Not Deleted");
-        })
-    } catch (error) {
-
-    }
-})
 
 
-
-
-
-
-// TEACHER
-
-// Teacher Signup
-const teacherSchema = mongoose.Schema({
-    name: {
-        required: true,
-        type: String
-    },
+// STUDENT GENERATE
+const studentSchema = mongoose.Schema({
+    name: String,
     email: {
-        unique: true,
-        required: true,
-        type: String
+        type: String,
+        required: true
     },
-    dob: {
-        required: true,
-        type: String
-    },
-    teacherId: {
-        required: true,
-        type: String
-    },
-    password: {
-        required: true,
-        type: String
-    },
-    initial: {
-        required: true,
-        type: String
-    },
-    level: {
-        required: true,
-        type: String
-    },
-    branch: {
-        required: true,
-        type: String
-    },
-    department: {
-        required: true,
-        type: String
-    },
-    image: {
-        required: true,
-        type: String
-    }
+    dob: String,
+    studentId: String,
+    password: String,
+    gender: String,
+    image: String,
+    schoolEmail: String,
+    schoolName: String,
+    courses: [],
+    payments: [],
+    documents: [],
+    stateOfOrigin: String,
+    schoolLink: String
 })
-const teacherModels = mongoose.models.teacherInfo || mongoose.model("teacherInfo", teacherSchema)
-app.post("/teacher/generate", (req, res) => {
+
+const studentModel = mongoose.models.students || mongoose.model("students", studentSchema)
+
+app.post("/generate/student", (req, res) => {
     let data = req.body
-    try {
-        teacherModels(data).save().then((result) => {
-            console.log(result);
-            try {
+    let email = data.email
+    let form = studentModel(data)
+    studentModel.find({ email: email }).then((result) => {
+        if (result.length > 0) {
+            res.status(401).send({ message: "Email already exist." })
+        } else {
+            form.save().then((result) => {
                 const transporter = nodemailer.createTransport({
                     service: "gmail",
                     auth: {
@@ -411,63 +313,175 @@ app.post("/teacher/generate", (req, res) => {
                     }
                 });
                 const template = `
-                <div
-                style=" background-color: #f3f2ef; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;">
-                <div
-                    style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: white; width: 500px; padding: 20px; box-shadow: 2px 3px 100px rgba(0, 0, 0, 0.178); border-radius: 8px; margin: auto;">
-                    <h1>Dear, ${data.name}, </h1>
-                    <div style="margin-top: 30px; font-size: 20px;">
-                        <p>
-                            You must have been longing to have this message, We have reviewed your application and you are a yes
-                            to
-                            the company.
-                            In a word you have been successfully appointed as a staff in one of the schools at GradeJet.
-                            You are to resume after 5 working days.
-                        </p>
-                        <br>
-                        <b>Here's your Login Details to the app.</b>
-                        <br>
-                        <strong>
-                            Teacher ID: ${data.name}
-                        </strong>
-                        <br>
-                        <br>
-                        <strong>
-                            Password: ${data.name}
-                        </strong>
-                    </div>
-                </div>
-            </div>
+                    <strong>Dear ${data.name}</strong>,
+                    <br/>
+                    <br/>
+                    On behalf of the entire ${data.schoolName} community, I am thrilled to extend a warm welcome to you! Congratulations on your admission to ${data.schoolName} for the ${data.academicYear} term. We believe you have what it takes to make a significant impact on our campus, and we cannot wait to witness your growth and achievements.
+                    <br/>
+                    <br/>
+                    As a newly admitted student, we understand that starting a new chapter in your academic journey can be both exciting and a little nerve-wracking. Rest assured, we are here to support and guide you every step of the way. ${data.schoolName} takes pride in fostering a vibrant and inclusive learning environment where all students can thrive.
+                    <br/>
+                    <br/>
+                    Here are a few important next steps to help you prepare for the upcoming academic year:
+                    <br/>
+                    <br/>
+                    1. Confirm Your Admission: To secure your spot at ${data.schoolName}, kindly follow the instructions in the attached acceptance package or visit our online portal at <a href="${data.schoolLink}">${data.schoolLink}</a> to officially confirm your admission.
+                    <br/>
+                    1. Usage of GradeJet Portal: ${data.schoolName} uses a school management system <a href="">gradejet.com</a> for :
+                        <br/>
+                        (i) Student Information Management: The system maintain a comprehensive database of student information, including personal details, academic records, attendance, and disciplinary history.
+                            <br/>
+                        (ii) Enrollment and Admissions: The system facilitates the enrollment and admissions process, making it easier to track and manage student applications and registrations.
+                        <br/>
+                        (iii) Grade Management: Teachers can record and manage students' grades, assignments, and assessments using the system, which can then be accessed by students for progress tracking.
+                        <br/>
+                        (iv) Communication with Others: The system enables efficient communication between teachers and student and other students through messaging features, notifications, and access to students' academic progress.
+                        <br/>
+                        (v) Financial Management: The system assists in managing financial operations, including fee collection, invoicing, and tracking payments.
+                        <br/>
+                        (vi) Library Management: The system can maintain a catalog of library resources, enabling students and staff to search for and borrow books easily (coming soon).
+                        <br/>
+                        (vii) Learning Management System (LMS) Integration: In some cases, the system may integrate a Learning Management System (LMS) to facilitate online learning and course delivery if your school takes virtual learning.
+                    <br/>
+                    2. Connect with Your Classmates: Join our official GradeJet Chats on the School Management System (GradeJet) to start connecting with your present and future classmates and from other schools. This is a great way to make new friends and build a supportive network.
+                    <br/>
+                    3. Review Course Catalog and Requirements: Take some time to explore our course catalog and academic requirements for your chosen program. Familiarizing yourself with the curriculum will prepare you for your academic journey at ${data.schoolName}.
+                    <br/>
+                    4. Health and Wellness: Ensure you have completed all required health forms and vaccinations. The well-being of our students is a top priority at ${data.schoolName}.
+                    <br/>
+                    <br/>
+                    We encourage you to reach out to our Admissions Office if you have any questions or need further assistance. We are here to help make your transition to ${data.schoolName} as seamless as possible.
+                    <br/>
+                    <br/>
+                    Once again, congratulations on your admission to ${data.schoolName}. We are delighted to have you join our diverse and vibrant community. Your unique perspectives and talents will undoubtedly enrich our campus, and we cannot wait to see the positive impact you will make during your time here.
+                    <br/>
+                    <br/>
+                    Welcome to the ${data.schoolName} family! Your journey towards academic excellence and personal growth starts now.
+                    <br/>
+                    <br/>
+                    Best regards,
+                    <br/>
+                    <br/>
+                    <strong><i>GradeJet School Management System</i></strong>
                 `
                 const mailOptions = {
                     from: process.env.EMAIL,
                     to: data.email,
-                    subject: "GradeJet School Management System",
+                    subject: `Welcome to ${data.schoolName}: Your Next Chapter Begins!`,
                     html: template
-                };
 
+                };
                 transporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
-                        console.log("Error" + error)
+                        res.status(401).send({ status: 401, error })
                     } else {
-                        console.log("Email sent:" + info.response);
-                        res.status(201).json({ status: 201, info })
+                        res.status(201).send({ status: 201, info })
                     }
                 })
+                res.status(201).send({ message: `${data.name} Account Created.` })
+            }).catch((err) => {
+                res.status(401).send({ message: err })
+            })
+        }
+    })
+})
+// TEACHER
+// GET ALL TEACHER
 
-            } catch (error) {
-                console.log("Error" + error);
-                res.status(401).json({ status: 401, error })
-            }
+// Teacher GENERATE
+const teacherSchema = mongoose.Schema({
+    name: String,
+    email: {
+        unique: true,
+        required: true,
+        type: String
+    },
+    dob: String,
+    teacherId: String,
+    password: String,
+    initial: String,
+    course: String,
+    image: String,
+    schoolEmail: String,
+    schoolName: String
+})
+const teacherModels = mongoose.models.teachers || mongoose.model("teachers", teacherSchema)
+app.post("/generate/teacher", (req, res) => {
+    let data = req.body
+    let email = data.email
+    let form = teacherModels(data)
+    teacherModels.find({ email: email }).then((resultss) => {
+        if (resultss.length > 0) {
+            res.status(401).send({ message: "Teacher's email already exist." })
+        } else {
+            form.save().then((result) => {
+                try {
+                    const transporter = nodemailer.createTransport({
+                        service: "gmail",
+                        auth: {
+                            user: process.env.EMAIL,
+                            pass: process.env.PASSWORD
+                        }
+                    });
+                    const template = `
+                        <div
+                        style=" background-color: #f3f2ef; width: 100%; height: 100vh; display: flex; align-items: center; justify-content: center;">
+                        <div
+                            style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; background-color: white; width: 500px; padding: 20px; box-shadow: 2px 3px 100px rgba(0, 0, 0, 0.178); border-radius: 8px; margin: auto;">
+                            <h1>Dear, ${data.initial} ${data.name}, </h1>
+                            <div style="margin-top: 30px; font-size: 20px;">
+                                <p>
+                                    You must have been longing to have this message, Well we have reviewed your application and you are one of the eligible applicant for this role.
+                                    <br/>
+                                    In a word you have been successfully appointed as a staff in ${data.schoolName}.
+                                    <br/>
+                                    As a school we make use of a school management system which is ,<a href="#">Gradejet.com</a> for online interactions and grading of our students .
+                                </p>
+                                <br>
+                                <b>Here's your Login Details to the grading system website.</b>
+                                <br>
+                                <strong>
+                                    Teacher ID: ${data.teacherId}
+                                </strong>
+                                <br>
+                                <br>
+                                <strong>
+                                    Password: ${data.password}
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                        `
+                    const mailOptions = {
+                        from: process.env.EMAIL,
+                        to: data.email,
+                        subject: "GradeJet School Management System",
+                        html: template
 
-            res.status(201).send({ message: `${data.name} Account Created` })
-        }).catch((err) => {
-            console.log(err);
-            res.status(401).send({ message: `Email exists Already` })
-        })
-    } catch (error) {
-        res.status(401).send({ message: "Client error" })
-    }
+                    };
+
+                    transporter.sendMail(mailOptions, (error, info) => {
+                        if (error) {
+                            res.status(401).send({ status: 401, error })
+                        } else {
+                            res.status(201).send({ status: 201, info })
+                        }
+                    })
+
+                } catch (error) {
+                    res.status(401).send({ status: 401, error })
+                }
+                console.log(result);
+                res.status(201).send({ message: `${data.name} Account Created`, status: 201 })
+            }).catch((err) => {
+                console.log(err);
+                res.status(401).send({ message: `Validation Error` })
+            })
+        }
+    }).catch((err) => {
+        console.log(err);
+    })
+    // res.status(401).send({ message: "Internal server error" })
 })
 
 

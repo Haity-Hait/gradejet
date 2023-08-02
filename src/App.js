@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router";
-import GenerateTeacher from "./components/Admin/GenerateTeacher";
 import Signin from "./components/Super Admin/Signin/Signin";
 import Dashboard from "./components/Super Admin/Dashboard/Dashboard";
 import GenerateSchool from "./components/Super Admin/Generate School/GenerateSchool";
@@ -13,8 +12,11 @@ import { createContext, useContext, useState } from "react";
 import Modal from "./components/Admin/Modal/Modal";
 import Time from "./components/Time";
 import AdminNotice from "./components/Admin/Notices/AdminNotice";
-import GeneraTeachers from "./components/Admin/GenerateTeachers/GeneraTeachers";
+// import GeneraTeachers from "./components/Admin/GenerateTeachers/GeneraTeachers";
 import Courses from "./components/Admin/Courses/Courses";
+import Loader from "./Loader";
+import GenerateStudents from "./components/Admin/GenerateStudents/GenerateStudents";
+import GenerateTeachers from "./components/Admin/GenerateTeachers/GeneraTeachers";
 export const Testing = createContext()
 function App() {
 const [value, setValue] = useState([])
@@ -23,7 +25,8 @@ const [value, setValue] = useState([])
     <Testing.Provider value={{ value, setValue }}>
       <div className="App">
         <Routes>
-          <Route path="/teacher/generate" element={<GenerateTeacher />} />
+          <Route path="/" element={"Na landing page"} />
+          {/* <Route path="/teacher/generate" element={<GenerateTeacher />} /> */}
           <Route path="/superadmin/signin" element={<Signin />} />
           <Route path="/superadmin/dashboard" element={<Dashboard />} />
           <Route path="/superadmin/generate/school" element={<GenerateSchool />} />
@@ -35,9 +38,8 @@ const [value, setValue] = useState([])
           <Route path="/admin/dashboard" element={<DashboardAdmin />} />
           <Route path="/admin/notice" element={<AdminNotice />} />
           <Route path="/admin/courses" element={<Courses />} />
-          <Route path="/admin/generate/teacher" element={<GeneraTeachers />} />
-          <Route path="/teacher/bb" element={<GenerateTeacher />} />
-          {/* <Route path="/verify" element={<Veri />} /> */}
+          <Route path="/admin/generate/teacher" element={<GenerateTeachers />} />
+          <Route path="/admin/generate/student" element={<GenerateStudents />} />
           {/* <Route path="/superadmin/dashb" element={<SideNav />} /> */}
           {/* <Route path="/student/generate" element={<GenerateStudents />} />
         <Route path="/student/signin" element={<SigninStudents />} />

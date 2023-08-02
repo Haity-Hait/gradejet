@@ -11,6 +11,7 @@ const GenerateSchool = () => {
     const [city, setCity] = useState("")
     const [Zip, setZip] = useState("")
     const [country, setCountry] = useState("")
+    const [schoolLink, setSchoolLink] = useState("")
     const [phone, setPhone] = useState("")
     const [classMode, setClassMode] = useState("")
     let image = "https://u-static.fotor.com/images/text-to-image/result/PRO-e11aad76d1a44986b5288d35605d8547.jpg@1200w_1200h_1s.src"
@@ -19,7 +20,7 @@ const GenerateSchool = () => {
     let folllower = 0
     let likes = 0
     let Month = date.toLocaleString('default', { month: 'long' });
-    let data = { schoolName, email, password, address, city, Zip, country, folllower, likes, phone, image, classMode, Year, Month }
+    let data = { schoolName, email, password, address, city, Zip, country, folllower, likes, phone, image, classMode, Year, Month, schoolLink }
     const add = (e) => {
         e.preventDefault()
         axios.post("http://localhost:1516/generate/school", data).then((res) => {
@@ -100,10 +101,17 @@ const GenerateSchool = () => {
                                         Class Mode <span>*</span>
                                     </p>
                                     <select className="form-control" onChange={(e) => setClassMode(e.target.value)}>
+                                        <option value=""></option>
                                         <option value="Physical">Physical</option>
                                         <option value="Virtual">Virtual</option>
                                         <option value="Both">Both</option>
                                     </select>
+                                </div>
+                                <div className="pile">
+                                    <p className="detail">
+                                        School Website <span>*</span>
+                                    </p>
+                                    <input className="form-control" onChange={(e) => setSchoolLink(e.target.value)}/>
                                 </div>
                             </div>
                             <div className="">

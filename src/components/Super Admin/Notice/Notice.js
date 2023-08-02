@@ -9,7 +9,8 @@ const Notice = () => {
     const [notice, setNotice] = useState("")
     let date = new Date().toDateString()
     let time = new Date().toLocaleTimeString()
-    let data = { from, to, notice, date, time }
+    const sender = "Gradejet Management"
+    let data = { from, to, notice, date, time, sender }
     const send = () => {
         console.log(time);
         axios.post("http://localhost:1516/notice", data).then((res) => {
@@ -33,7 +34,7 @@ const Notice = () => {
                             <p>From:</p>
                             <select className='form-control' onChange={(e) => setFrom(e.target.value)}>
                                 <option selected></option>
-                                <option value="super admin">Super Admin</option>
+                                <option value="Gradejet Management">Super Admin</option>
                             </select>
                         </div>
                         <div className="flex items-center gap-3">

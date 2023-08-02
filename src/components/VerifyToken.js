@@ -28,12 +28,11 @@ const VerifyToken = () => {
           let tokenExpire = err.response.data.message;
           setExpired(tokenExpire);
           console.log(tokenExpire);
-          LogOut()
         });
     }, []),
     1000
   );
-  return { verifyData, expired };
+  return { verifyData, expired, LogOut };
 };
 
 export default VerifyToken;

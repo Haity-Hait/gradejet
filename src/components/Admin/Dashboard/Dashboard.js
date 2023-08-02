@@ -4,18 +4,18 @@ import "./dashboard.css";
 import { MegaphoneIcon } from "@heroicons/react/24/outline";
 import { LuSchool } from "react-icons/lu";
 import axios from "axios";
-import Modal from "../Modal/Modal";
 import { useNavigate } from "react-router";
 import Accordion from "../../../Accordion";
 import Time from "../../Time";
 import VerifyToken from "../../VerifyToken";
 const DashboardAdmin = ({ Content }) => {
-  const [expired, setExpired] = useState();
   const [data, setData] = useState([]);
   const [notice, setNotice] = useState([]);
   const navigate = useNavigate();
   const [currentTime, setCurrentTime] = useState();
-  const { verifyData } = VerifyToken()
+  const { verifyData, expired } = VerifyToken()
+
+
 
 
 
@@ -48,12 +48,15 @@ const DashboardAdmin = ({ Content }) => {
     <div>
       <MainAdminLay>
         <div className="joj">
-          <div className="flex items-center justify-between px-4">
+          <div className="waist px-3">
             <h3 className="bop">DASHBOARD</h3>
+            <div className="e">
             <Time STYLE="meo" />
+
+            </div>
           </div>
-          <div className=" px-3">
-            <div className="flex items-center justify-between">
+          <div className="yur">
+            <div className="flex lin items-center justify-between">
               <div className="sch flip">
                 <LuSchool className="nan" />
                 <p className=" mx-4">Total Students</p>
@@ -73,10 +76,10 @@ const DashboardAdmin = ({ Content }) => {
 
             <div className="flex fall justify-between items-center">
               <div>
-                <h1 className="mn">{currentTime}, <br /> {verifyData.schoolName} Admin.</h1>
+                <h1 className="mn">{currentTime},  {verifyData.schoolName} Admin.</h1>
               </div>
               <div className="blue p-3">
-                <h1 className="wel">Welcome Back To GradeJet</h1>
+                <h1 className="wel ">Welcome Back To GradeJet</h1>
               </div>
             </div>
             <div className=" mt-7">
@@ -87,7 +90,7 @@ const DashboardAdmin = ({ Content }) => {
                 </div>
                 {notice.map((item, key) => (
                   <Accordion datas={item} key={key} />
-                )) }
+                ))}
               </div>
             </div>
           </div>

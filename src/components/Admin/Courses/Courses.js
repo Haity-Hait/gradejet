@@ -1,73 +1,64 @@
 import React, { useState } from "react";
 import MainAdminLay from "../../../layouts/AdminLayouts/MainAdminLay";
-import VerifyToken from "../../VerifyToken";
 import { LuSchool2 } from "react-icons/lu";
-import { MdOutlineSubject } from "react-icons/md";
-import { GrCheckmark } from "react-icons/gr";
-import "./courses.css";
-import { CheckIcon } from "@heroicons/react/24/outline";
+import { Icon } from "@iconify/react";
+import VerifyToken from "../../VerifyToken";
 import axios from "axios";
-import CoursesPage from "./CoursesPage";
 const Courses = () => {
-    const { verifyData, expired } = VerifyToken();
-    const [courseName, setCourseName] = useState("");
-    const [courseType, setCourseType] = useState("");
-    const adminEmail = verifyData.email;
-    let data = { courseName, courseType, adminEmail };
-    const Submit = () => {
-        axios.post("http://localhost:1516/courses", data).then((res) => {
-            let pop = res.data.message
-            alert(pop)
-            console.log(pop);
-        }).catch((err) => {
-            let errorMsg = err.response.data.message
-            alert(errorMsg)
-            console.log(errorMsg);
-        })
-    }
-    return (
-        <MainAdminLay>
-            <div>
-                <div className="fex ml-5">
-                    <MdOutlineSubject className="icon" />
-                    <h3>Courses</h3>
-                </div>
+  const [courseType, setCourseType] = useState("")
+  const [courseTime, setCourseTime] = useState("")
+  const [courseName, setCourseName] = useState("")
+  const { verifyData, expired } = VerifyToken()
+  let schoolName = verifyData.schoolName
+  const data = {
+    courseName,
+    courseTime,
+    courseType,
+    schoolName
+  }
+  const create = () => {
+    axios.post("http://localhost:1516/courses", data).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
+  return (
+    <MainAdminLay>
+      <div className="px-5 py-2">
+        <div className="fex">
+          <Icon className="icon" icon="carbon:course" hFlip={true} />
+          <h3>Create a Course</h3>
+        </div>
+        <div className="pile">
+          <p className="detail">
+            Course Name <span>*</span>
+          </p>
+          <input onChange={(e) => setCourseName(e.target.value)} type="text" className="form-control" />
+        </div>
+        <div className="plex">
+          <div className="pile">
+            <p className="detail">
+              Course Type <span>*</span>
+            </p>
+            <select className="form-control" onChange={(e) => setCourseType(e.target.value)}>
+              <option></option>
+              <option value="core">Core</option>
+              <option value="optional">Optional</option>
+            </select>
+          </div>
+          <div className="pile">
+            <p className="detail">
+              Course Time <span>*</span>
+            </p>
+            <input onChange={(e) => setCourseTime(e.target.value)} type="time" className="form-control" />
+          </div>
+        </div>
+        <button onClick={create} className="btn-primary m-3">Create</button>
+      </div>
 
-                <div className="ses">
-                    <div className="pile">
-                        <p className="detail">
-                            Course Name <span>*</span>
-                        </p>
-                        <input
-                            onChange={(e) => setCourseName(e.target.value)}
-                            required
-                            placeholder="Course Name"
-                            type="text"
-                            className="form-control"
-                        />
-                    </div>
-                    <div className="pile">
-                        <p className="detail">
-                            Course Type <span>*</span>
-                        </p>
-                        <select
-                            className="form-control"
-                            onChange={(e) => setCourseType(e.target.value)}
-                        >
-                            <option></option>
-                            <option value="core">Core</option>
-                            <option value="optional">Optional</option>
-                        </select>
-                        <button onClick={Submit} className="btn-primary m-4 oo">
-                            <CheckIcon className="bute" />
-                            Create
-                        </button>
-                    </div>
-                </div>
-                <CoursesPage />
-            </div>
-        </MainAdminLay>
-    );
+    </MainAdminLay>
+  );
 };
 
 export default Courses;

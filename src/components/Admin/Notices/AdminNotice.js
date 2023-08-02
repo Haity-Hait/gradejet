@@ -10,8 +10,9 @@ const AdminNotice = () => {
   const [notice, setNotice] = useState("");
   let date = new Date().toDateString();
   let time = new Date().toLocaleTimeString();
-  let data = { from, to, notice, date, time };
   const { verifyData, expired } = VerifyToken()
+  let sender = verifyData.schoolName
+  let data = { from, to, notice, date, time, sender };
 
   const send = () => {
     console.log(time);
@@ -19,13 +20,13 @@ const AdminNotice = () => {
       .post("http://localhost:1516/notice", data)
       .then((res) => {
         alert(`Notice sent to all ${res.data.message.to}`);
-        setFrom(" ")
-        setTo(" ")
-        setNotice(" ")
       })
       .catch((err) => {
         alert(err.response.data.message);
       });
+      setFrom('')
+      setTo('')
+      setNotice('')
   };
    
 
@@ -43,6 +44,7 @@ const AdminNotice = () => {
               <select
                 className="form-control"
                 onChange={(e) => setFrom(e.target.value)}
+                value={from}
               >
                 <option selected></option>
                 <option value="admin">Admin</option>
@@ -53,10 +55,12 @@ const AdminNotice = () => {
               <select
                 className="form-control"
                 onChange={(e) => setTo(e.target.value)}
+                value={to}
               >
                 <option selected></option>
-                <option value="teachers">Teacher</option>
-                <option value="student">Student</option>
+                <option value="teachers">Teachers</option>
+                <option value="student">Students</option>
+                <option value="super admin">Super Admin</option>
               </select>
             </div>
           </div>
@@ -65,6 +69,7 @@ const AdminNotice = () => {
           <textarea
             onChange={(e) => setNotice(e.target.value)}
             className="bubo"
+            value={notice}
           ></textarea>
         </div>
         <div className="loader">
