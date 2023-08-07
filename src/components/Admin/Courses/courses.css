@@ -17,3 +17,18 @@
     color: black;
     width: 20px;
 }
+.mamo{
+    /* background-color: aqua; */
+    /* padding: 8px; */
+    display: flex;
+
+}
+.desar{
+    background-color: gainsboro;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px 0 0 10px;
+}
+.opy{
+    border-radius: 0 5px 5px 0;
+}

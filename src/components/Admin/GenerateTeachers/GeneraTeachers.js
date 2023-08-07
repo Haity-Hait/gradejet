@@ -7,6 +7,9 @@ import { useNavigate } from "react-router";
 import MainAdminLay from "../../../layouts/AdminLayouts/MainAdminLay";
 import { LuSchool2 } from "react-icons/lu";
 import VerifyToken from "../../VerifyToken";
+import { ToastContainer, toast } from 'react-toastify';
+
+  import 'react-toastify/dist/ReactToastify.css';
 
 const GenerateTeachers = () => {
   const [name, setName] = useState("");
@@ -35,8 +38,8 @@ const GenerateTeachers = () => {
   };
   const add = async () => {
     axios.post("http://localhost:1516/generate/teacher", data).then((res) => {
-      alert(res.data.message);
-
+      // alert(res.data.message);
+      toast.success(res.data.message)
     }).catch((err) => {
       alert(err.response.data.message);
     })
@@ -50,6 +53,7 @@ const GenerateTeachers = () => {
   return (
     <MainAdminLay>
       <div>
+      <ToastContainer />
         {/* {show ? (
           <Alert onClose={() => setShow(false)} dismissible>
             Email Sent Succesfully

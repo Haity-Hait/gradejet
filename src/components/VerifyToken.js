@@ -22,12 +22,10 @@ const VerifyToken = () => {
         .then((res) => {
           let gg = res.data.data;
           setVerifyData(gg);
-          console.log(gg);
         })
         .catch((err) => {
           let tokenExpire = err.response.data.message;
           setExpired(tokenExpire);
-          console.log(tokenExpire);
         });
     }, []),
     1000

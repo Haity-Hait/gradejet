@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("dotenv").config();
 const cors = require("cors");
+const lodash = require("lodash")
 const router = require("./routes/router");
 const nodemailer = require("nodemailer");
 const port = 1516;
@@ -83,6 +84,9 @@ app.post("/generate/school", (req, res, next) => {
     let email = req.body.email
     let data = req.body
     try {
+        if (!email || !data.password || !data.classMode || !data.phone) {
+            return res.status(400).json({ message: " All Fields are required." });
+        }
         GenerateSchools.find({ email: email }).then((result) => {
             if (result.length > 0) {
                 res.status(409).send({ message: "Email already exists.", status: false })
@@ -149,6 +153,9 @@ app.get("/get/school", (req, res) => {
 app.post("/get/school/v1", (req, res) => {
     let email = req.body.email
     let password = req.body.password
+    if (!email || !password) {
+        return res.status(400).json({ message: " All Fields are required." });
+    }
     GenerateSchools.findOne({ email: email }).then((result) => {
         if (result == null) {
             res.status(409).send({ message: "You do not have an account with us" })
@@ -223,6 +230,9 @@ app.post("/notice", (req, res) => {
     let data = req.body
     let form = new noticeModel(data)
     try {
+        if (!data.to || !data.from || !data.date || !data.notice || !data.time) {
+            return res.status(400).json({ message: " All Fields are required." });
+        }
         form.save().then((result) => {
             res.status(201).send({ message: result })
         }).catch((err) => {
@@ -249,28 +259,66 @@ app.get("/get/admin/notice", (req, res) => {
 // Courses
 const courseSchema = mongoose.Schema({
     courseName: String,
-    courseTime: String,
+    courseTimePerDay: String,
     courseType: String,
-    schoolName: String
+    schoolName: String,
+    courseDuration: String
 })
 const CourseModel = mongoose.models.courses || mongoose.model("courses", courseSchema)
-app.post("/courses", async (req, res, next) => {
-    let schoolName = req.body.schoolName
-    let data = req.body
-    let form = CourseModel(data)
-    // form.save().then((result) => {
-    //     res.status(201).send({ message: result })
-    // }).catch((err) => {
-    //     console.log(err);
-    // })
-    CourseModel.find({ schoolName: schoolName }).then((result) => {
-        if (result) {
-            let filter = result.filter((val) => val.courseName)
-            console.log(filter);
-        }
-    })
-})
 
+app.post("/courses", async (req, res, next) => {
+    const schoolName = req.body.schoolName;
+    const data = req.body;
+    const courseName = data.courseName;
+    const form = CourseModel(data);
+    try {
+        if (!courseName || !data.courseTimePerDay || !data.courseType || !data.courseDuration) {
+            return res.status(400).json({ message: " All Fields are required." });
+        }
+        const result = await CourseModel.find({ schoolName: schoolName });
+        if (result && result.length > 0) {
+            let courseExists = false;
+            lodash.filter(result, (val) => {
+                let courseGangan = val.courseName;
+                if (courseName === courseGangan) {
+                    courseExists = true;
+                    return;
+                }
+            });
+
+            if (courseExists) {
+                return res.status(401).send({ message: `${courseName} already exists in the school.` });
+            }
+        }
+        if(!courseName){
+            console.log("Weeee");
+        }
+        form.save().then((result3) => {
+            console.log(result3);
+            res.status(200).send({ message: `${courseName} added successfully.` });
+        }).catch((err) => {
+            res.status(401).send({ message: `${courseName} failed to be added.` });
+        })
+    } catch (err) {
+        // Handle any errors that might occur during database operations
+        console.error(err);
+        res.status(500).send({ message: "An error occurred while processing your request." });
+    }
+});
+
+// Get courses for a school
+app.get("/get/courses", async (req, res, next) => {
+    const schoolName = req.query.schoolName; // Extract 'schoolName' property from the request body
+    await CourseModel.find({ schoolName: schoolName })
+      .then((result) => {
+        res.status(200).send({ message: result });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).send({ message: "An error occurred while fetching courses." });
+      });
+  });
+  
 
 
 // STUDENT GENERATE
@@ -300,6 +348,9 @@ app.post("/generate/student", (req, res) => {
     let data = req.body
     let email = data.email
     let form = studentModel(data)
+    if (!email || !data.stdobateOfOrigin || !data.gender || !data.name || !data.dob) {
+        return res.status(400).json({ message: " All Fields are required." });
+    }
     studentModel.find({ email: email }).then((result) => {
         if (result.length > 0) {
             res.status(401).send({ message: "Email already exist." })
@@ -410,6 +461,9 @@ app.post("/generate/teacher", (req, res) => {
     let data = req.body
     let email = data.email
     let form = teacherModels(data)
+    if (!email || !data.password || !data.dob || !data.course || !data.name) {
+        return res.status(400).json({ message: " All Fields are required." });
+    }
     teacherModels.find({ email: email }).then((resultss) => {
         if (resultss.length > 0) {
             res.status(401).send({ message: "Teacher's email already exist." })
