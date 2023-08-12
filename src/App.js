@@ -17,6 +17,7 @@ import Courses from "./components/Admin/Courses/Courses";
 import Loader from "./Loader";
 import GenerateStudents from "./components/Admin/GenerateStudents/GenerateStudents";
 import GenerateTeachers from "./components/Admin/GenerateTeachers/GeneraTeachers";
+import LandingPage from "./components/LandingPage/LandingPage";
 export const Testing = createContext()
 function App() {
 const [value, setValue] = useState([])
@@ -25,7 +26,7 @@ const [value, setValue] = useState([])
     <Testing.Provider value={{ value, setValue }}>
       <div className="App">
         <Routes>
-          <Route path="/" element={"Na landing page"} />
+          <Route path="/" element={<LandingPage />} />
           {/* <Route path="/teacher/generate" element={<GenerateTeacher />} /> */}
           <Route path="/superadmin/signin" element={<Signin />} />
           <Route path="/superadmin/dashboard" element={<Dashboard />} />
