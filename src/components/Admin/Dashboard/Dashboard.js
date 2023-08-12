@@ -13,11 +13,8 @@ const DashboardAdmin = ({ Content }) => {
   const [notice, setNotice] = useState([]);
   const navigate = useNavigate();
   const [currentTime, setCurrentTime] = useState();
-  const { verifyData, expired } = VerifyToken()
-
-
-
-
+  const { verifyData, expired, teachers, students, courses } = VerifyToken()
+  
 
   setInterval(useEffect(() => {
     let time = new Date().toLocaleTimeString();
@@ -36,7 +33,7 @@ const DashboardAdmin = ({ Content }) => {
     axios
       .get("http://localhost:1516/get/admin/notice")
       .then((res) => {
-        console.log();
+        // console.log();
         let note = res.data.notice;
         setNotice(note);
       })
@@ -60,17 +57,17 @@ const DashboardAdmin = ({ Content }) => {
               <div className="sch flip">
                 <LuSchool className="nan" />
                 <p className=" mx-4">Total Students</p>
-                <p className="ppaa ">{ }</p>
+                <p className="ppaa ">{students.length }</p>
               </div>
               <div className="sch flip">
                 <LuSchool className="nan" />
                 <p className=" mx-4">Total teachers</p>
-                <p className="ppaa ">{ }</p>
+                <p className="ppaa ">{teachers.length}</p>
               </div>
               <div className="sch flip">
                 <LuSchool className="nan" />
-                <p className=" mx-4">Total Classes</p>
-                <p className="ppaa ">{ }</p>
+                <p className=" mx-4">Total Courses</p>
+                <p className="ppaa ">{courses.length }</p>
               </div>
             </div>
 

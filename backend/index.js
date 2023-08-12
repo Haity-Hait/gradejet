@@ -3,7 +3,6 @@ const app = express();
 require("dotenv").config();
 const cors = require("cors");
 const lodash = require("lodash")
-const router = require("./routes/router");
 const nodemailer = require("nodemailer");
 const port = 1516;
 const mongoose = require("mongoose");
@@ -15,7 +14,6 @@ const SECRET = process.env.JWT_SECRET
 // middle ware
 app.use(express.json());
 app.use(cors());
-app.use(router)
 
 function connect() {
     try {
@@ -85,7 +83,7 @@ app.post("/generate/school", (req, res, next) => {
     let data = req.body
     try {
         if (!email || !data.password || !data.classMode || !data.phone) {
-            return res.status(400).json({ message: " All Fields are required." });
+            return res.status(400).json({ message: " Empty field detected. Please provide the required information." });
         }
         GenerateSchools.find({ email: email }).then((result) => {
             if (result.length > 0) {
@@ -93,7 +91,6 @@ app.post("/generate/school", (req, res, next) => {
             } else {
                 let form = new GenerateSchools(req.body)
                 form.save().then((result2) => {
-                    console.log(result2)
                     res.status(201).send({ message: `${SchoolName} account has been created successfully`, status: true })
 
                     const template = `
@@ -122,15 +119,15 @@ app.post("/generate/school", (req, res, next) => {
 
                     transporter.sendMail(mailOptions, (error, info) => {
                         if (error) {
-                            console.log("Error" + error)
+                            // console.log("Error" + error)
                         } else {
-                            console.log("Email sent:" + info.response);
+                            // console.log("Email sent:" + info.response);
                             res.status(201).json({ status: 201, info })
                         }
                     })
 
                 }).catch((error) => {
-                    console.log(error)
+                    // console.log(error)
                     res.status(401).json({ status: 401, error })
                 })
             }
@@ -144,7 +141,7 @@ app.get("/get/school", (req, res) => {
     GenerateSchools.find().then((result) => {
         res.status(201).send({ result })
     }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         res.status(401).send({ err })
     })
 })
@@ -154,7 +151,7 @@ app.post("/get/school/v1", (req, res) => {
     let email = req.body.email
     let password = req.body.password
     if (!email || !password) {
-        return res.status(400).json({ message: " All Fields are required." });
+        return res.status(400).json({ message: " Empty field detected. Please provide the required information." });
     }
     GenerateSchools.findOne({ email: email }).then((result) => {
         if (result == null) {
@@ -162,7 +159,7 @@ app.post("/get/school/v1", (req, res) => {
         } else {
             if (password == result.password) {
                 const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "1d" })
-                console.log(token);
+                // console.log(token);
                 res.status(201).send({ admin: result, status: true, message: "Valid Authentication", token: token })
             } else {
                 res.status(401).send({ status: false, message: "Invalid Password" })
@@ -170,23 +167,23 @@ app.post("/get/school/v1", (req, res) => {
         }
     }).catch((err) => {
         res.status(401).send({ message: "Internal Server Error" })
-        console.log(err)
+        // console.log(err)
     })
 })
 // Verify Token
 app.get("/verifytoken", (req, res) => {
     const token = req.headers.authorization.split(" ")[1]
-    console.log(token)
+    // console.log(token)
     jsonwebtoken.verify(token, SECRET, (error, decoded) => {
         if (error) {
             res.status(401).send({ message: "Session Over. You will be logged out right now.", status: false })
-            console.log(error)
+            // console.log(error)
         } else {
-            console.log(decoded)
+            // console.log(decoded)
             let email = decoded.email
             if (decoded != undefined) {
                 GenerateSchools.findOne({ email: email }).then((result) => {
-                    console.log(result)
+                    // console.log(result)
                     res.status(200).send({ status: true, data: result })
                 })
             } else {
@@ -205,7 +202,7 @@ app.get("/get/school/:id", (req, res) => {
     GenerateSchools.findOne({ _id: id }).then((result) => {
         res.status(201).send({ result })
     }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         res.status(401).send({ err })
     })
 })
@@ -231,7 +228,7 @@ app.post("/notice", (req, res) => {
     let form = new noticeModel(data)
     try {
         if (!data.to || !data.from || !data.date || !data.notice || !data.time) {
-            return res.status(400).json({ message: " All Fields are required." });
+            return res.status(400).json({ message: " Empty field detected. Please provide the required information." });
         }
         form.save().then((result) => {
             res.status(201).send({ message: result })
@@ -239,7 +236,7 @@ app.post("/notice", (req, res) => {
             res.status(401).send({ message: "Validation Failed" })
         })
     } catch (error) {
-        console.log(error);
+        // console.log(error);
     }
 })
 
@@ -247,11 +244,11 @@ app.post("/notice", (req, res) => {
 // Get Admins Notice
 app.get("/get/admin/notice", (req, res) => {
     noticeModel.find({ to: "admins" }).then((result) => {
-        console.log(result);
+        // console.log(result);
         res.status(201).send({ notice: result, status: true })
     }).catch((error) => {
         res.status(401).send({ error: error, status: false })
-        console.log(error);
+        // console.log(error);
     })
 })
 
@@ -273,7 +270,7 @@ app.post("/courses", async (req, res, next) => {
     const form = CourseModel(data);
     try {
         if (!courseName || !data.courseTimePerDay || !data.courseType || !data.courseDuration) {
-            return res.status(400).json({ message: " All Fields are required." });
+            return res.status(400).json({ message: " Empty field detected. Please provide the required information." });
         }
         const result = await CourseModel.find({ schoolName: schoolName });
         if (result && result.length > 0) {
@@ -291,10 +288,10 @@ app.post("/courses", async (req, res, next) => {
             }
         }
         if(!courseName){
-            console.log("Weeee");
+            // console.log("Weeee");
         }
         form.save().then((result3) => {
-            console.log(result3);
+            // console.log(result3);
             res.status(200).send({ message: `${courseName} added successfully.` });
         }).catch((err) => {
             res.status(401).send({ message: `${courseName} failed to be added.` });
@@ -314,10 +311,10 @@ app.get("/get/courses", async (req, res, next) => {
         res.status(200).send({ message: result });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         res.status(500).send({ message: "An error occurred while fetching courses." });
       });
-  });
+});
   
 
 
@@ -348,8 +345,8 @@ app.post("/generate/student", (req, res) => {
     let data = req.body
     let email = data.email
     let form = studentModel(data)
-    if (!email || !data.stdobateOfOrigin || !data.gender || !data.name || !data.dob) {
-        return res.status(400).json({ message: " All Fields are required." });
+    if (!email || !data.stateOfOrigin || !data.gender || !data.name || !data.dob) {
+        return res.status(400).json({ message: " Empty field detected. Please provide the required information." });
     }
     studentModel.find({ email: email }).then((result) => {
         if (result.length > 0) {
@@ -436,6 +433,19 @@ app.post("/generate/student", (req, res) => {
         }
     })
 })
+
+// GET STUDENT
+app.get("/get/students", async (req, res, next) => {
+    const schoolName = req.query.schoolName; // Extract 'schoolName' property from the request body
+    // console.log(schoolName);
+    await studentModel.find({ schoolName: schoolName }).then((result) => {
+        console.log(result);
+        res.status(200).send({ message: result })
+    }).catch((err) => {
+        res.status(500).send({ message: "An error occurred while fetching courses." })
+    })
+});
+
 // TEACHER
 // GET ALL TEACHER
 
@@ -462,7 +472,7 @@ app.post("/generate/teacher", (req, res) => {
     let email = data.email
     let form = teacherModels(data)
     if (!email || !data.password || !data.dob || !data.course || !data.name) {
-        return res.status(400).json({ message: " All Fields are required." });
+        return res.status(400).json({ message: " Empty field detected. Please provide the required information." });
     }
     teacherModels.find({ email: email }).then((resultss) => {
         if (resultss.length > 0) {
@@ -539,9 +549,18 @@ app.post("/generate/teacher", (req, res) => {
 })
 
 
+// GET TEACHERS
 
-
-
+app.get("/get/teachers", async (req, res, next) => {
+    const schoolName = req.query.schoolName; // Extract 'schoolName' property from the request body
+    console.log(schoolName);
+    await teacherModels.find({ schoolName: schoolName }).then((result) => {
+        console.log(result);
+        res.status(200).send({ message: result })
+    }).catch((err) => {
+        res.status(500).send({ message: "An error occurred while fetching courses." })
+    })
+});
 
 
 

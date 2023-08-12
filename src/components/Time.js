@@ -5,7 +5,6 @@ const Time = ({STYLE}) => {
     const count = () => {
         let time = new Date().toLocaleTimeString()
         setCurrentTime(time)
-        console.log(time);
     }
     setInterval(count, 0);
     return (

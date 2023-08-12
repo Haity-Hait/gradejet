@@ -50,11 +50,11 @@ const GenerateStudents = () => {
         }).catch((err) => {
             alert(err.response.data.message);
         })
-        setName(' ')
-        setDob(' ')
-        setEmail(' ')
-        setStateOfOrigin(' ')
-        setgender(' ')
+        // setName(' ')
+        // setDob(' ')
+        // setEmail(' ')
+        // setStateOfOrigin(' ')
+        // setgender(' ')
     };
 
     return (

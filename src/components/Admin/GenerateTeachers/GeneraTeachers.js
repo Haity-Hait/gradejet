@@ -7,10 +7,8 @@ import { useNavigate } from "react-router";
 import MainAdminLay from "../../../layouts/AdminLayouts/MainAdminLay";
 import { LuSchool2 } from "react-icons/lu";
 import VerifyToken from "../../VerifyToken";
-import { ToastContainer, toast } from 'react-toastify';
-
-  import 'react-toastify/dist/ReactToastify.css';
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const GenerateTeachers = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -18,10 +16,11 @@ const GenerateTeachers = () => {
   const [initial, setInitial] = useState("");
   const [course, setCourse] = useState("");
   const [show, setShow] = useState(true);
+  const [getCourses, setGetCourses] = useState([]);
   const image = "https://scict.edossier.app/admin/assets/img/man.png";
   let teacherId = Math.floor(Math.random() * (500 - 100) + 100);
   let password = Math.random().toString(36).slice(2);
-  const { verifyData, expired } = VerifyToken()
+  const { verifyData, expired } = VerifyToken();
   let schoolName = verifyData.schoolName;
   let schoolEmail = verifyData.email;
   let data = {
@@ -34,33 +33,48 @@ const GenerateTeachers = () => {
     course,
     image,
     schoolEmail,
-    schoolName
+    schoolName,
   };
   const add = async () => {
-    axios.post("http://localhost:1516/generate/teacher", data).then((res) => {
-      // alert(res.data.message);
-      toast.success(res.data.message)
-    }).catch((err) => {
-      alert(err.response.data.message);
-    })
-    setDob('')
-    setEmail('')
-    setInitial('')
-    setName('')
-    setCourse('')
+    axios
+      .post("http://localhost:1516/generate/teacher", data)
+      .then((res) => {
+        toast.success(res.data.message);
+        setDob("");
+        setEmail("");
+        setInitial("");
+        setName("");
+        setCourse("");
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
   };
+  const currentCourses = () => {
+    console.log("Fetching courses...");
+    axios
+      .get(`http://localhost:1516/get/courses`, {
+        params: {
+          schoolName: schoolName,
+        },
+      })
+      .then((res) => {
+        setGetCourses(res.data.message);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.message);
+      });
+  };
+
+  useEffect(() => {
+    console.log("Triggered");
+    currentCourses();
+  }, []);
 
   return (
     <MainAdminLay>
       <div>
-      <ToastContainer />
-        {/* {show ? (
-          <Alert onClose={() => setShow(false)} dismissible>
-            Email Sent Succesfully
-          </Alert>
-        ) : (
-          ""
-        )} */}
+        <ToastContainer />
         <div className="w-50 mx-auto mt-5 p-3 shadow rounded">
           <div className="fex">
             <LuSchool2 className="icon" />
@@ -74,7 +88,7 @@ const GenerateTeachers = () => {
               required
               value={initial}
               onChange={(e) => setInitial(e.target.value)}
-              class="form-control"
+              className="form-control"
             >
               <option selected></option>
               <option value="mr">Mr</option>
@@ -95,7 +109,7 @@ const GenerateTeachers = () => {
             />
           </div>
           <div className="mb-3">
-          <p className="detail">
+            <p className="detail">
               Teacher's Email Address <span>*</span>
             </p>
             <input
@@ -108,7 +122,7 @@ const GenerateTeachers = () => {
             />
           </div>
           <div className="mb-3">
-          <p className="detail">
+            <p className="detail">
               Teacher's D.O.B. <span>*</span>
             </p>
             <input
@@ -126,17 +140,19 @@ const GenerateTeachers = () => {
             </p>
             <select
               onChange={(e) => setCourse(e.target.value)}
-              class="form-control"
+              className="form-control"
+              onClick={currentCourses}
               value={course}
-              aria-label="Default select example"
+              // aria-label="Default select example"
             >
-              <option selected></option>
-              <option value="ui/ux">UI / UX </option>
-              <option value="software engineering">Software Engineering</option>
-              <option value="machine learning">Machine Learning</option>
-              <option value="data science">Data Science</option>
-              <option value="graphic design">Graphic Design</option>
-              <option value="robotics">Robotics</option>
+              <option value="" disabled selected>
+              </option>
+
+              {getCourses.map((el, index) => (
+                <>
+                  <option value={el.courseName}>{el.courseName}</option>
+                </>
+              ))}
             </select>
           </div>
           <button onClick={add} type="submit" className="btn btn-primary">
