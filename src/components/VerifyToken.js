@@ -10,57 +10,37 @@ const VerifyToken = () => {
   const [students, setStudent] = useState([]);
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
+
   const LogOut = () => {
     localStorage.removeItem("token");
     navigate("/admin/signin");
   };
+  const fetchData = async (schoolName) => {
+    const response = await axios.get("http://localhost:1516/get/teachers", {
+      params: {
+        schoolName: schoolName,
+      },
+    });
 
-  const checkTeacher = async () => {
-    if (verifyData) {
-      let schoolName = verifyData.schoolName;
-      try {
-        const response = await axios.get("http://localhost:1516/get/teachers", {
-          params: {
-            schoolName: schoolName,
-          },
-        });
-        setTeachers(response.data.message);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
-  const checkStudent = async () => {
-    if (verifyData) {
-      let schoolName = verifyData.schoolName;
-      try {
-        const response = await axios.get("http://localhost:1516/get/students", {
-          params: {
-            schoolName: schoolName,
-          },
-        });
-        setStudent(response.data.message);
-      } catch (error) {
-        console.log(error);
-      }
-    }
+    setTeachers(response.data.message);
+
+    const response1 = await axios.get("http://localhost:1516/get/students", {
+      params: {
+        schoolName: schoolName,
+      },
+    });
+
+    setStudent(response1.data.message);
+
+    const response2 = await axios.get("http://localhost:1516/get/courses", {
+      params: {
+        schoolName: schoolName,
+      },
+    });
+
+    setCourses(response2.data.message);
   };
 
-  const checkCourses = async () => {
-    if (verifyData) {
-      let schoolName = verifyData.schoolName;
-      try {
-        const response = await axios.get("http://localhost:1516/get/courses", {
-          params: {
-            schoolName: schoolName,
-          },
-        });
-        setCourses(response.data.message);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
   useEffect(() => {
     const verifyToken = async () => {
       try {
@@ -77,16 +57,15 @@ const VerifyToken = () => {
           },
         });
 
-        let gg = response.data.data;
-
-        setVerifyData(gg);
-        setExpired(false); // Reset expired state if token is valid
-        checkTeacher();
-        checkStudent()
-        checkCourses()
+        const gg = response.data.data;
+        if (response.data && gg) {
+          setVerifyData(gg);
+          setExpired(false); // Reset expired state if token is valid
+          fetchData(gg.schoolName);
+        }
       } catch (error) {
         if (error.response && error.response.data) {
-          let tokenExpire = error.response.data.message;
+          const tokenExpire = error.response.data.message;
           setExpired(tokenExpire);
           LogOut(); // Perform logout immediately
         }
@@ -94,7 +73,7 @@ const VerifyToken = () => {
     };
 
     verifyToken(); // Verify token immediately when the component renders
-  }); // Note: Dependency array is empty to run only on mount
+  }, []); // Note: Dependency array is empty to run only on mount
 
   return { verifyData, expired, LogOut, teachers, students, courses };
 };

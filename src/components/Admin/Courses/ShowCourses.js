@@ -2,29 +2,29 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import VerifyToken from "../../VerifyToken";
 const ShowCourses = () => {
-  let [courses, setCourses] = useState([]);
-  const { verifyData } = VerifyToken();
+  // let [courses, setCourses] = useState([]);
+  const { verifyData, courses } = VerifyToken();
   const schoolName = verifyData.schoolName;
   const [isElementVisible, setIsElementVisible] = useState(true);
 
-  const check = () => {
-    axios
-      .get(`http://localhost:1516/get/courses`, {
-        params: {
-          schoolName: schoolName,
-        },
-      })
-      .then((res) => {
-        setCourses(res.data.message);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    setIsElementVisible(!isElementVisible);
-  };
-  useEffect(() => {
-    check();
-  }, []);
+  // const check = () => {
+  //   axios
+  //     .get(`http://localhost:1516/get/courses`, {
+  //       params: {
+  //         schoolName: schoolName,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setCourses(res.data.message);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  //   setIsElementVisible(!isElementVisible);
+  // };
+  // useEffect(() => {
+  //   check();
+  // }, []);
   return (
     <div>
       <table className="table-auto w-full">
@@ -35,13 +35,13 @@ const ShowCourses = () => {
             <th className="px-4 py-2">Course Time Per Day</th>
             <th className="px-4 py-2">Course Type</th>
             <th className="px-4 py-2">Course Duration</th>
-            <button className="btn-primary" onClick={check}>
+            {/* <button className="btn-primary" onClick={check}>
               {isElementVisible ? "Hide Table" : "Show Table"}
-            </button>
+            </button> */}
           </tr>
         </thead>
         <tbody>
-          {isElementVisible ? (
+          {
             courses.length > 0 ? (
               courses.map((item, index) => (
                 <tr
@@ -61,17 +61,11 @@ const ShowCourses = () => {
             ) : (
               <tr>
                 <td className="border px-4 py-2 red" colSpan="6">
-                No courses are currently listed.
+                <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
                 </td>
               </tr>
             )
-          ) : (
-            <tr>
-              <td className="border px-4 py-2 red" colSpan="6">
-                The table is not visible.
-              </td>
-            </tr>
-          )}
+          }
         </tbody>
       </table>
     </div>

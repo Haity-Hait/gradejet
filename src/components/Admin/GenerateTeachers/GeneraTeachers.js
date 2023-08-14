@@ -20,7 +20,7 @@ const GenerateTeachers = () => {
   const image = "https://scict.edossier.app/admin/assets/img/man.png";
   let teacherId = Math.floor(Math.random() * (500 - 100) + 100);
   let password = Math.random().toString(36).slice(2);
-  const { verifyData, expired } = VerifyToken();
+  const { verifyData, courses } = VerifyToken();
   let schoolName = verifyData.schoolName;
   let schoolEmail = verifyData.email;
   let data = {
@@ -50,26 +50,6 @@ const GenerateTeachers = () => {
         toast.error(err.response.data.message);
       });
   };
-  const currentCourses = () => {
-    console.log("Fetching courses...");
-    axios
-      .get(`http://localhost:1516/get/courses`, {
-        params: {
-          schoolName: schoolName,
-        },
-      })
-      .then((res) => {
-        setGetCourses(res.data.message);
-      })
-      .catch((err) => {
-        toast.error(err.response.data.message);
-      });
-  };
-
-  useEffect(() => {
-    console.log("Triggered");
-    currentCourses();
-  }, []);
 
   return (
     <MainAdminLay>
@@ -141,16 +121,17 @@ const GenerateTeachers = () => {
             <select
               onChange={(e) => setCourse(e.target.value)}
               className="form-control"
-              onClick={currentCourses}
               value={course}
-              // aria-label="Default select example"
             >
-              <option value="" disabled selected>
-              </option>
+              <option value="" disabled selected></option>
 
-              {getCourses.map((el, index) => (
+              {courses.map((el, index) => (
                 <>
-                  <option value={el.courseName}>{el.courseName}</option>
+                  {courses.length > 0 ? (
+                    <option value={el.courseName}>{el.courseName}</option>
+                  ) : (
+                    <option><div class="lds-ring"><div></div><div></div><div></div><div></div></div></option>
+                  )}
                 </>
               ))}
             </select>

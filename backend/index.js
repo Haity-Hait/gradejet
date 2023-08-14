@@ -565,9 +565,12 @@ app.get("/get/teachers", async (req, res, next) => {
 
 
 
+// GET SCHOOL DATA
 
-
-
+app.get("/get/schoolData", (req, res) => {
+    const schoolName = req.query.schoolName;
+    
+})
 
 
 
