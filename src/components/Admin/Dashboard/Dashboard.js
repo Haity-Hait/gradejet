@@ -3,8 +3,11 @@ import MainAdminLay from "../../../layouts/AdminLayouts/MainAdminLay";
 import "./dashboard.css";
 import { MegaphoneIcon } from "@heroicons/react/24/outline";
 import { LuSchool } from "react-icons/lu";
+import { PiBooksDuotone, PiStudentDuotone } from "react-icons/pi";
+import { FaChalkboardTeacher } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router";
+// import { UilBooks } from '@iconscout/react-unicons/icons'
 import Accordion from "../../../Accordion";
 import Time from "../../Time";
 import VerifyToken from "../../VerifyToken";
@@ -55,17 +58,17 @@ const DashboardAdmin = ({ Content }) => {
           <div className="yur">
             <div className="flex lin items-center justify-between">
               <div className="sch flip">
-                <LuSchool className="nan" />
+                <PiStudentDuotone className="nan" />
                 <p className=" mx-4">Total Students</p>
                 <p className="ppaa ">{students.length }</p>
               </div>
               <div className="sch flip">
-                <LuSchool className="nan" />
+                <FaChalkboardTeacher className="nan" />
                 <p className=" mx-4">Total teachers</p>
                 <p className="ppaa ">{teachers.length}</p>
               </div>
               <div className="sch flip">
-                <LuSchool className="nan" />
+                <PiBooksDuotone className="nan" />
                 <p className=" mx-4">Total Courses</p>
                 <p className="ppaa ">{courses.length }</p>
               </div>

@@ -4,6 +4,7 @@ import "./signin.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { Testing } from "../../../App";
+import { ToastContainer, toast } from "react-toastify";
 
 
 
@@ -19,16 +20,17 @@ const Signinadmin = () => {
     e.preventDefault();
     axios.post("http://localhost:1516/get/school/v1", data).then((res) => {
       let token = res.data.token
-      alert(res.data.message)
+      toast.success(res.data.message)
       localStorage.setItem("token", token)
       navigate("/admin/dashboard")
     }).catch((err) => {
-      alert(err.response.data.message)
+      toast.error(err.response.data.message)
     })
-  };
+  };  
 
   return (
     <div className="body">
+      <ToastContainer />
       <form className="main shadow-md" noValidate>
         <img className="img" src={LightLogo} alt="" />
         <input

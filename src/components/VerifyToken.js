@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Modal from "./Admin/Modal/Modal";
-
 const VerifyToken = () => {
   const [expired, setExpired] = useState(false);
   const [verifyData, setVerifyData] = useState([]);

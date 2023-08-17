@@ -34,7 +34,7 @@ const Notice = () => {
                             <p>From:</p>
                             <select className='form-control' onChange={(e) => setFrom(e.target.value)}>
                                 <option selected></option>
-                                <option value="Gradejet Management">Super Admin</option>
+                                <option value="Gradejet Management">Gradejet Management</option>
                             </select>
                         </div>
                         <div className="flex items-center gap-3">

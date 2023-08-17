@@ -27,3 +27,9 @@
     top: 0;
     left: 0;
 }
+.iop{
+    padding: 2px 1px;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    cursor: pointer;
+}

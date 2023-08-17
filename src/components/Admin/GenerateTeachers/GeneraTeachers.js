@@ -9,6 +9,7 @@ import { LuSchool2 } from "react-icons/lu";
 import VerifyToken from "../../VerifyToken";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Time from "../../Time";
 const GenerateTeachers = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -55,11 +56,13 @@ const GenerateTeachers = () => {
     <MainAdminLay>
       <div>
         <ToastContainer />
-        <div className="w-50 mx-auto mt-5 p-3 shadow rounded">
-          <div className="fex">
-            <LuSchool2 className="icon" />
-            <h3>Generate Teacher</h3>
+        <div className="w-50 mx-auto p-3 shadow rounded">
+        <div className="waist px-3">
+          <h3 className="bop">Teachers</h3>
+          <div className="e">
+            <Time STYLE="meo" />
           </div>
+        </div>
           <div className="mb-3">
             <p className="detail">
               Teacher's Initial <span>*</span>
@@ -123,17 +126,20 @@ const GenerateTeachers = () => {
               className="form-control"
               value={course}
             >
-              <option value="" disabled selected></option>
-
-              {courses.map((el, index) => (
-                <>
-                  {courses.length > 0 ? (
+              <option value="" disabled selected hidden>
+                Select a course....
+              </option>
+              {course.length == 0 ? (
+                courses.map((el, index) => (
+                  <>
                     <option value={el.courseName}>{el.courseName}</option>
-                  ) : (
-                    <option><div class="lds-ring"><div></div><div></div><div></div><div></div></div></option>
-                  )}
-                </>
-              ))}
+                  </>
+                ))
+              ) : (
+                <option disabled>
+                  No course has been registered in the school
+                </option>
+              )}
             </select>
           </div>
           <button onClick={add} type="submit" className="btn btn-primary">

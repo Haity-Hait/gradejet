@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { CONTROL, Calendar, Chart, Chart_fill, Chat, Folder,  User } from "../../Super Admin/Dashboard/Navbar/assets/Images";
 import { BiLogOut } from "react-icons/bi";
 import { Icon } from '@iconify/react';
+import Modal from "../Modal/Modal";
 // import { LuLogOut } from "react-icons/lu";
 const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
+  const [wakeLogout, setWakeLogOut] = useState(false)
   const [open, setOpen] = useState(true);
   const Menus = [
     { title: "Dashboard", src: Chart_fill, to: "/admin/dashboard" },
@@ -13,12 +15,15 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
     { title: "Teachers", gap: true, src: User, to: "/admin/generate/teacher" },
     { title: "Students", src: User, to: "/admin/generate/student" },
     // { title: "", src: Chat, gap: true, to: "" },
-    { title: "Notification", src: Chat, gap: true, to: "" },
+    // { title: "Notification", src: Chat, gap: true, to: "" },
     { title: "Courses ", gap: true, src: Chart_fill, to: "/admin/courses" },
     { title: "Files ", src: Folder, to: "" },
   ];
+  const [isVisible, setIsVisible] = useState(false);
 
-
+  const toggleVisibility = () => {
+    setIsVisible(!isVisible);
+  };
   return (
     <div className="flex kk">
       <div
@@ -31,7 +36,7 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
            border-2 rounded-full  ${!open && "rotate-180"}`}
           onClick={() => setOpen(!open)}
         />
-        <div className="flex gap-x-4 items-center">
+        <div className="flex gap-x-4 items-center hover:bg-light-white iop">
           <img
             src={ADMINLOGO}
             className={`cursor-pointer w-14 rounded-lg duration-500 ${open && "rotate-[360deg] "
@@ -64,7 +69,7 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
               </span>
             </Link>
           ))}
-          <button onClick={LOGOUT}>
+          <button onClick={toggleVisibility}>
             <div className={`flex papi rounded-md pll absolute bottom-0 p-1 py-3 cursor-pointer hover:bg-light-white text-white text-sm items-center gap-x-4`}>
               <BiLogOut className="hh" />
               <span className={`${open && "hidden"} origin-left duration-200`}>
@@ -72,6 +77,7 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
               </span>
             </div>
           </button>
+          {isVisible && <Modal Content="This action will end your current session and require you to sign in again to access your account."  Myclick={LOGOUT} header="Log out of GradeJet?" funBtn="Log Out" />}
         </ul>
       </div>
     </div>

@@ -46,6 +46,9 @@
     display: flex;
     justify-content: space-between;
 }
+.nan{
+    color: #081a51;
+}
 .fall{
     /* flex-wrap: wrap; */
     width: 100%;

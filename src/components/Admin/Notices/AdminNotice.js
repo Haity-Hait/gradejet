@@ -4,6 +4,8 @@ import { LuSchool2 } from "react-icons/lu";
 import axios from "axios";
 import MainAdminLay from "../../../layouts/AdminLayouts/MainAdminLay";
 import VerifyToken from "../../VerifyToken";
+import { ToastContainer, toast } from "react-toastify";
+import Time from "../../Time";
 const AdminNotice = () => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
@@ -19,10 +21,10 @@ const AdminNotice = () => {
     axios
       .post("http://localhost:1516/notice", data)
       .then((res) => {
-        alert(`Notice sent to all ${res.data.message.to}`);
+        toast.success(`Notice sent to all ${res.data.message.to}`);
       })
       .catch((err) => {
-        alert(err.response.data.message);
+        toast.error(err.response.data.message);
       });
       setFrom('')
       setTo('')
@@ -32,11 +34,14 @@ const AdminNotice = () => {
 
   return (
     <MainAdminLay>
+      <ToastContainer />
       <div className=" px-5 py-2">
         <div className="flex foster justify-between">
-          <div className="fex">
-            <LuSchool2 className="icon" />
-            <h3>Notices</h3>
+        <div className="waist px-3">
+          <h3 className="bop">Notices</h3>
+        </div>
+          <div className="e">
+            <Time STYLE="meo" />
           </div>
           <div className="sete  flex items-center gap-5">
             <div className="flex items-center gap-3">
@@ -60,7 +65,7 @@ const AdminNotice = () => {
                 <option selected></option>
                 <option value="teachers">Teachers</option>
                 <option value="student">Students</option>
-                <option value="super admin">Super Admin</option>
+                <option value="GradeJet Management">GradeJet Management</option>
               </select>
             </div>
           </div>

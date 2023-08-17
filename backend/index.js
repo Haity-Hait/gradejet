@@ -153,22 +153,26 @@ app.post("/get/school/v1", (req, res) => {
     if (!email || !password) {
         return res.status(400).json({ message: " Empty field detected. Please provide the required information." });
     }
-    GenerateSchools.findOne({ email: email }).then((result) => {
-        if (result == null) {
-            res.status(409).send({ message: "You do not have an account with us" })
-        } else {
-            if (password == result.password) {
-                const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "1d" })
-                // console.log(token);
-                res.status(201).send({ admin: result, status: true, message: "Valid Authentication", token: token })
+    try {
+        GenerateSchools.findOne({ email: email }).then((result) => {
+            if (result == null) {
+                res.status(409).send({ message: "You do not have an account with us" })
             } else {
-                res.status(401).send({ status: false, message: "Invalid Password" })
+                if (password == result.password) {
+                    const token = jsonwebtoken.sign({ email }, SECRET, { expiresIn: "1d" })
+                    // console.log(token);
+                    res.status(201).send({ admin: result, status: true, message: "Valid Authentication", token: token })
+                } else {
+                    res.status(401).send({ status: false, message: "Invalid Password" })
+                }
             }
-        }
-    }).catch((err) => {
+        }).catch((err) => {
+            res.status(401).send({ message: "Internal Server Error" })
+            // console.log(err)
+        })
+    } catch (error) {
         res.status(401).send({ message: "Internal Server Error" })
-        // console.log(err)
-    })
+    }
 })
 // Verify Token
 app.get("/verifytoken", (req, res) => {
@@ -308,10 +312,12 @@ app.get("/get/courses", async (req, res, next) => {
     const schoolName = req.query.schoolName; // Extract 'schoolName' property from the request body
     await CourseModel.find({ schoolName: schoolName })
       .then((result) => {
+        // if(result.length <= 0){
+        //     res.status(200).send({message: "You Do not have any course currently."})
+        // }
         res.status(200).send({ message: result });
       })
       .catch((err) => {
-        // console.log(err);
         res.status(500).send({ message: "An error occurred while fetching courses." });
       });
 });
@@ -565,12 +571,6 @@ app.get("/get/teachers", async (req, res, next) => {
 
 
 
-// GET SCHOOL DATA
-
-app.get("/get/schoolData", (req, res) => {
-    const schoolName = req.query.schoolName;
-    
-})
 
 
 
