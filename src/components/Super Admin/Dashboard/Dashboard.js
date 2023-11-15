@@ -1,18 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MainLayouts from "../../../layouts/Super Admin Layouts/MainLayouts";
 import "./dashboard.css";
 import { LuSchool } from "react-icons/lu";
 import { MegaphoneIcon, MicrophoneIcon } from "@heroicons/react/24/outline";
+// import Accordion22 from "../../../Accordion22";
+import Accordion22 from "../../../Accordion22";
+
 import axios from "axios";
 const Dashboard = () => {
   let [amount, setAmount] = useState([])
+  const [notice, setNotice] = useState([]);
 
-  axios.get("http://localhost:1516/get/school").then((res) => {
-    // console.log();
-    setAmount(res.data.result)
-  }).catch((err) => {
-    console.log(err);
-  })
+  
+  
+  useEffect(() => {
+    axios.get("http://localhost:1516/get/school").then((res) => {
+      // console.log();
+      setAmount(res.data.result)
+    }).catch((err) => {
+      console.log(err);
+    })
+    axios
+      .get("http://localhost:1516/get/admin/super/notice")
+      .then((res) => {
+        // console.log();
+        let note = res.data.notice;
+        setNotice(note);
+      })
+      .then((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <MainLayouts>
       <div className=" px-3">
@@ -27,10 +45,15 @@ const Dashboard = () => {
           </div>
         </div>
         <div className=" mt-20">
-            <div className="notice">
-              <div className="nes">
-                <p>Notice</p>
-                <MegaphoneIcon className=" w-5" />
+        <div className=" mt-7">
+              <div className="notice kiss">
+                <div className="nes">
+                  <p>Notice</p>
+                  <MegaphoneIcon className=" w-5" />
+                </div>
+                {notice.map((item, key) => (
+                  <Accordion22 datas={item} key={key} />
+                ))}
               </div>
             </div>
         </div>

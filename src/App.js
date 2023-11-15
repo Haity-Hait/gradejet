@@ -16,7 +16,10 @@ import AdminNotice from "./components/Admin/Notices/AdminNotice";
 import Courses from "./components/Admin/Courses/Courses";
 import Loader from "./Loader";
 import GenerateStudents from "./components/Admin/GenerateStudents/GenerateStudents";
+import Showstudent from "./components/Admin/Dashboard/ShowStudents/Showstudent";
+import ShowTeachers from "./components/Admin/Dashboard/ShowTeachers/ShowTeachers";
 import GenerateTeachers from "./components/Admin/GenerateTeachers/GeneraTeachers";
+import ShowCourses from "./components/Admin/Dashboard/ShowCourses/ShowCourses";
 import LandingPage from "./components/LandingPage/LandingPage";
 export const Testing = createContext()
 function App() {
@@ -41,6 +44,9 @@ const [value, setValue] = useState([])
           <Route path="/admin/courses" element={<Courses />} />
           <Route path="/admin/generate/teacher" element={<GenerateTeachers />} />
           <Route path="/admin/generate/student" element={<GenerateStudents />} />
+          <Route path="/admin/display-student" element={<Showstudent />} />
+          <Route path="/admin/display-teacher" element={<ShowTeachers />} />
+          <Route path="/admin/display-course" element={<ShowCourses />} />
           {/* <Route path="/superadmin/dashb" element={<SideNav />} /> */}
           {/* <Route path="/student/generate" element={<GenerateStudents />} />
         <Route path="/student/signin" element={<SigninStudents />} />

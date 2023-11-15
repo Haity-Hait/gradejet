@@ -41,10 +41,19 @@
 .yur{
     padding: 0 3%;
 }
+.ji{
+    width: 50px;
+    border-radius: 50%;
+}
 .waist{
     align-items: center;
     display: flex;
     justify-content: space-between;
+}
+.sch:hover{
+    background-color: #F3F2EF;
+    cursor: pointer;
+
 }
 .nan{
     color: #081a51;

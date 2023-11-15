@@ -257,6 +257,18 @@ app.get("/get/admin/notice", (req, res) => {
 })
 
 
+// Get Super Admins Notice
+app.get("/get/admin/super/notice", (req, res) => {
+    noticeModel.find({ to: "GradeJet Management" }).then((result) => {
+        // console.log(result);
+        res.status(201).send({ notice: result, status: true })
+    }).catch((error) => {
+        res.status(401).send({ error: error, status: false })
+        // console.log(error);
+    })
+})
+
+
 // Courses
 const courseSchema = mongoose.Schema({
     courseName: String,

@@ -18,7 +18,15 @@ const DashboardAdmin = ({ Content }) => {
   const [currentTime, setCurrentTime] = useState();
   const { verifyData, expired, teachers, students, courses } = VerifyToken()
   
-
+    const showStudents = () => {
+      navigate("/admin/display-student");
+    }
+    const showCourses = () => {
+      navigate("/admin/display-course");
+    }
+    const showTeachers = () => {
+      navigate("/admin/display-teacher");
+    }
   setInterval(useEffect(() => {
     let time = new Date().toLocaleTimeString();
     if (time >= "0:00:00 AM") {
@@ -57,17 +65,17 @@ const DashboardAdmin = ({ Content }) => {
           </div>
           <div className="yur">
             <div className="flex lin items-center justify-between">
-              <div className="sch flip">
+              <div className="sch flip" onClick={showStudents}>
                 <PiStudentDuotone className="nan" />
                 <p className=" mx-4">Total Students</p>
                 <p className="ppaa ">{students.length }</p>
               </div>
-              <div className="sch flip">
+              <div className="sch flip" onClick={showTeachers}>
                 <FaChalkboardTeacher className="nan" />
                 <p className=" mx-4">Total teachers</p>
                 <p className="ppaa ">{teachers.length}</p>
               </div>
-              <div className="sch flip">
+              <div className="sch flip" onClick={showCourses}>
                 <PiBooksDuotone className="nan" />
                 <p className=" mx-4">Total Courses</p>
                 <p className="ppaa ">{courses.length }</p>
