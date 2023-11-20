@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router'
-import TeachersLayout from '../layouts/TeachersLayout'
 import { UserIcon } from '@heroicons/react/24/solid'
 import { CalendarIcon, MapPinIcon } from '@heroicons/react/24/outline'
-import Todo from './TOdo/Todo'
+// import TeachersLayout from '../../layouts/TeachersLayout/TeachersLayout'
+// import Todo from '../TOdo/Todo'
+import TeachersLayout from '../../layouts/TeachersLayout/TeachersLayout'
 const HomeTeach = () => {
   let display = JSON.parse(localStorage.getItem("pap"))
 
@@ -71,7 +72,7 @@ const HomeTeach = () => {
 
         </div>
         <div className="w-50 mt-5 shadow ">
-        <Todo />
+        {/* <Todo /> */}
         </div>
       </div>
     </TeachersLayout>

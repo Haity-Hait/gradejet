@@ -10,7 +10,8 @@ const Notice = () => {
     let date = new Date().toDateString()
     let time = new Date().toLocaleTimeString()
     const sender = "Gradejet Management"
-    let data = { from, to, notice, date, time, sender }
+    const senderEmail = "gradejet@gmail.com"
+    let data = { from, to, notice, date, time, sender, senderEmail }
     const send = () => {
         console.log(time);
         axios.post("http://localhost:1516/notice", data).then((res) => {

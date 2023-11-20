@@ -1,0 +1,35 @@
+/* .papi:focus-within{
+    background-color: rgba(255,255,255,0.17);
+} */
+.papi{
+    width: 100%;
+    font-size: 17px;
+    font-family: "Roboto" sans-serif;
+}
+.pll{
+    width: 50%;
+}
+/* .mara{
+    height: 90.2vh;
+} */
+.sass{
+    width: 150px;
+    height: 50px;
+}
+.hh{
+    font-size: 25px;
+}
+.pros{
+    height: 100vh;
+}
+.kk{
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+.iop{
+    padding: 2px 1px;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    cursor: pointer;
+}

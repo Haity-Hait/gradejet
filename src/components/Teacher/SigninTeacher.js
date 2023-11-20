@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-const SigninTeacher = () => {
+const Test = () => {
     const navigate = useNavigate()
     let [saved, setSaved] = useState([])
     let [password, setPassword] = useState("")
@@ -51,4 +51,4 @@ const SigninTeacher = () => {
     )
 }
 
-export default SigninTeacher
+export default Test

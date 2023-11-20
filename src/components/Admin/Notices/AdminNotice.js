@@ -14,7 +14,8 @@ const AdminNotice = () => {
   let time = new Date().toLocaleTimeString();
   const { verifyData, expired } = VerifyToken()
   let sender = verifyData.schoolName
-  let data = { from, to, notice, date, time, sender };
+  let senderEmail = verifyData.email
+  let data = { from, to, notice, date, time, sender, senderEmail };
 
   const send = () => {
     console.log(time);

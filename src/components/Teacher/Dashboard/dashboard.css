@@ -1,0 +1,117 @@
+.bop, .meo{
+    font-size: 40px;
+    font-weight: 500;
+    color: #081a51;
+    font-family: "Poppins", sans-serif;
+}
+.joj{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.flip{
+    width: fit-content;
+}
+.nes{
+    position: sticky;
+    background-color: #F3F2EF;
+    top: 0;
+}
+.kiss{
+    /* width: ; */
+    height:300px;
+    overflow: auto;
+}
+.kiss::-webkit-scrollbar{
+    background-color: white;
+    width: 3px;
+}
+.kiss::-webkit-scrollbar-thumb{
+    background-color: #969592;
+    border-radius: 10px;
+    height: 100px;
+}
+.mn{
+    font-size: 38px;
+    font-weight: 800;
+    width: 400px;
+    color: #081a51;
+    font-family: "Montserrat", sans-serif;
+}
+.yur{
+    padding: 0 3%;
+}
+.ji{
+    width: 50px;
+    border-radius: 50%;
+}
+.waist{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.tt{
+    width: 600px;
+    padding: 20px;
+}
+.flexb{
+    display: flex;
+    /* justify-content: center; */
+}
+.me{
+    font-size: 23px;
+}
+.sch:hover{
+    background-color: #F3F2EF;
+    cursor: pointer;
+
+}
+.nan{
+    color: #081a51;
+}
+.fall{
+    /* flex-wrap: wrap; */
+    width: 100%;
+}
+
+@media (max-width: 1115px) {
+    .mn{
+        width: 100%;
+    }
+}
+@media (max-width: 1056px) {
+    .lin{
+        flex-wrap: wrap;
+    }
+    .fall{
+        flex-wrap: wrap;
+    }
+    .flip{
+        width: 100%;
+    }
+}
+@media (max-width: 744px) {
+    .e{
+        display: none;
+    }
+    .mn{
+        font-size: 30px;
+    }
+}
+@media (max-width: 682px) {
+    .fall{
+        flex-wrap: wrap;
+    }
+}
+@media (max-width: 610px) {
+   .bop{
+        font-size:35px;
+   }
+}
+@media (max-width: 370px) {
+   .bop{
+        font-size:30px;
+   }
+   .yur{
+    padding: 0;
+   }
+}

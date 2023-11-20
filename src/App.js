@@ -18,9 +18,17 @@ import Loader from "./Loader";
 import GenerateStudents from "./components/Admin/GenerateStudents/GenerateStudents";
 import Showstudent from "./components/Admin/Dashboard/ShowStudents/Showstudent";
 import ShowTeachers from "./components/Admin/Dashboard/ShowTeachers/ShowTeachers";
+
+
 import GenerateTeachers from "./components/Admin/GenerateTeachers/GeneraTeachers";
 import ShowCourses from "./components/Admin/Dashboard/ShowCourses/ShowCourses";
 import LandingPage from "./components/LandingPage/LandingPage";
+import DashboardTeacher from "./components/Teacher/Dashboard/Dashboard";
+import Signinteacher from "./components/Teacher/auth/Signin";
+import HomeTeach from "./components/Teacher/HomeTeach";
+import ExamsRecord from "./components/Teacher/ExamsRecord";
+import ExamSidebar from "./components/Teacher/ExamSidebar";
+import Test from "./components/Teacher/SigninTeacher";
 export const Testing = createContext()
 function App() {
 const [value, setValue] = useState([])
@@ -47,13 +55,15 @@ const [value, setValue] = useState([])
           <Route path="/admin/display-student" element={<Showstudent />} />
           <Route path="/admin/display-teacher" element={<ShowTeachers />} />
           <Route path="/admin/display-course" element={<ShowCourses />} />
+          <Route path="/teacher/dashboard" element={<DashboardTeacher />} />
+          <Route path="/teacher/auth" element={<Signinteacher />} />
           {/* <Route path="/superadmin/dashb" element={<SideNav />} /> */}
-          {/* <Route path="/student/generate" element={<GenerateStudents />} />
-        <Route path="/student/signin" element={<SigninStudents />} />
-        <Route path="/teacher/dashboard" element={<HomeTeach />} />
-        <Route path="/teacher/signin" element={<SigninTeacher />} />
+          <Route path="/student/generate" element={<GenerateStudents />} />
+        {/* <Route path="/student/signin" element={<SigninStudents />} /> */}
+        <Route path="/teacher/dashboardd" element={<HomeTeach />} />
+        <Route path="/teacher/signin" element={<Test />} />
         <Route path="/teacher/examrecords" element={<ExamsRecord />} />
-        <Route path="/sidebar" element={<ExamSidebar />} /> */}
+        <Route path="/sidebar" element={<ExamSidebar />} />
           <Route path="*" element="Yo not a page" />
         </Routes>
         {/* <h1 className=" text-red-600">Production mode</h1> */}

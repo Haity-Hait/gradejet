@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import TeacherNav from './TeacherNav'
 import { useLocation, useNavigate } from 'react-router'
-import TeachersLayout from '../layouts/TeachersLayout'
-import ExamLayout from '../layouts/ExamLayout'
+import ExamLayout from '../../layouts/TeachersLayout/ExamLayout'
 
 const ExamsRecord = (props) => {
   const [collect, setCollect] = useState([])

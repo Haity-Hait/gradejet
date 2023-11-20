@@ -1,6 +1,5 @@
 import React from 'react'
-import TeacherNav from '../components/TeacherNav'
-import ExamSidebar from '../components/ExamSidebar'
+import TeacherNav from '../../components/Teacher/TeacherNav'
 
 const TeachersLayout = ({children}) => {
   return (
