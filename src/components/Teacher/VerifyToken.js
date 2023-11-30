@@ -1,11 +1,12 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+  import axios from "axios";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+
 const VerifyTeachToken = () => {
   const [expired, setExpired] = useState(false);
-  const [verifyData, setVerifyData] = useState([]);
+  const [verifyData, setVerifyData] = useState({});
   const [teachers, setTeachers] = useState([]);
-  const [students, setStudent] = useState([]);
+  const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
   const navigate = useNavigate();
 
@@ -13,30 +14,32 @@ const VerifyTeachToken = () => {
     localStorage.removeItem("Ttoken");
     navigate("/teacher/auth");
   };
+
   const fetchData = async (schoolName) => {
-    const response = await axios.get("http://localhost:1516/get/teachers", {
-      params: {
-        schoolName: schoolName,
-      },
-    });
+    try {
+      const response = await axios.get("http://localhost:1516/get/teachers", {
+        params: {
+          schoolName: schoolName,
+        },
+      });
+      setTeachers(response.data.message);
+      console.log(teachers);
+      const response1 = await axios.get("http://localhost:1516/get/students", {
+        params: {
+          schoolName: schoolName,
+        },
+      });
+      setStudents(response1.data.message);
 
-    setTeachers(response.data.message);
-
-    const response1 = await axios.get("http://localhost:1516/get/students", {
-      params: {
-        schoolName: schoolName,
-      },
-    });
-
-    setStudent(response1.data.message);
-
-    const response2 = await axios.get("http://localhost:1516/get/courses", {
-      params: {
-        schoolName: schoolName,
-      },
-    });
-
-    setCourses(response2.data.message);
+      const response2 = await axios.get("http://localhost:1516/get/courses", {
+        params: {
+          schoolName: schoolName,
+        },
+      });
+      setCourses(response2.data.message);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   useEffect(() => {
@@ -48,12 +51,15 @@ const VerifyTeachToken = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:1516/teacher/verifytoken", {
-          headers: {
-            Authorization: "Bearer " + token,
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:1516/teacher/verifytoken",
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         const gg = response.data.data;
         console.log(gg);
@@ -72,7 +78,7 @@ const VerifyTeachToken = () => {
     };
 
     verifyToken(); // Verify token immediately when the component renders
-  }, []); // Note: Dependency array is empty to run only on mount
+  }, []); // Dependency array is empty to run only on mount
 
   return { verifyData, expired, LogOut, teachers, students, courses };
 };

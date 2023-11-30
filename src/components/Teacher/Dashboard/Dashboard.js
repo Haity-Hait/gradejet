@@ -38,19 +38,32 @@ const DashboardAdmin = ({ Content }) => {
         }
     }), 0);
 
-    useEffect(() => {
-        axios
-            .get("http://localhost:1516/get/admin/notice")
+    const senderEmail = verifyData.schoolEmail
+    // const param = { senderEmail }
+    console.log(senderEmail, "senderEmail");
+    let datas = {senderEmail}
+
+    const pepe = () => {
+         axios
+            .post(`http://localhost:1516/get/teacher/notice`, datas)
             .then((res) => {
+                console.log(res)
                 let note = res.data.notice;
                 setNotice(note);
+                console.log(note);
             })
             .then((err) => {
                 console.log(err);
             });
-    }, []);
+    }
+       useEffect(() => {
+        if(senderEmail){
+            pepe()
+           }else {
+            return;
+           }
+       });
     return (
-        <div>
             <MainTeachLay>
                 <div className="joj">
                     <div className="waist px-3">
@@ -67,16 +80,13 @@ const DashboardAdmin = ({ Content }) => {
                                 <p className=" mx-4">Course Students</p>
                                 <p className="ppaa ">{students.length}</p>
                             </div>
-                            {/* <div className="sch flip" onClick={showTeachers}>
-                <FaChalkboardTeacher className="nan" />
-                <p className=" mx-4">Total teachers</p>
-                <p className="ppaa ">{teachers.length}</p>
-              </div> */}
-                            {/* <div className="sch flip" onClick={showCourses}>
-                <PiBooksDuotone className="nan" />
-                <p className=" mx-4">Total Courses</p>
-                <p className="ppaa ">{courses.length }</p>
-              </div> */}
+                            <div className="sch flip" >
+                                <PiStudentDuotone className="nan" />
+                                <p className=" mx-4">Staff ID</p>
+                                <p className="ppaa p-7">{verifyData.teacherId}</p>
+                            </div>
+                            
+                            
                         </div>
 
                         <div className="flex fall justify-between items-center">
@@ -111,7 +121,6 @@ const DashboardAdmin = ({ Content }) => {
                     </div>
                 </div>
             </MainTeachLay>
-        </div>
     );
 };
 

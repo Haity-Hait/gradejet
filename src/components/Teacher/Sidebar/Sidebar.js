@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./sidebar.css"
 import { Link } from "react-router-dom";
-import { CONTROL, Calendar, Chart, Chart_fill, Chat, Folder,  User } from "../../Super Admin/Dashboard/Navbar/assets/Images";
+import { CONTROL, Calendar, Chart, Chart_fill, Folder,  User } from "../../Super Admin/Dashboard/Navbar/assets/Images";
 import { BiLogOut } from "react-icons/bi";
 import { Icon } from '@iconify/react';
 import Modal from "../../Admin/Modal/Modal";
@@ -10,13 +10,10 @@ const SidebarTeach = ({ ADMINLOGO, TeacherName, LOGOUT }) => {
   const [wakeLogout, setWakeLogOut] = useState(false)
   const [open, setOpen] = useState(true);
   const Menus = [
-    { title: "Dashboard", src: Chart_fill, to: "" },
-    { title: "Notice", src: Chart, to: "" },
-    { title: "Teachers", gap: true, src: User, to: "" },
-    { title: "Students", src: User, to: "" },
-    { title: "hwk", src: Chat, gap: true, to: "" } ,
-    { title: "Notification", src: Chat, gap: true, to: "" },
-    { title: "Courses ", gap: true, src: Chart_fill, to: "" },
+    { title: "Dashboard", src: Chart_fill, to: "/teacher/dashboard" },
+    { title: "Notice", src: Chart, to: "/teacher/notice" },
+    { title: "Grade Students", gap: true, src: User, to: "" },
+    { title: "Give Assignment ", src: Calendar, to: "" },
     { title: "Files ", src: Folder, to: "" },
   ];
   const [isVisible, setIsVisible] = useState(false);

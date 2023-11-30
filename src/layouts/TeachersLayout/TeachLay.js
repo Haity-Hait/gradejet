@@ -3,6 +3,7 @@ import VerifyToken from "../../components/VerifyToken";
 import { useNavigate } from "react-router";
 import SidebarTeach from "../../components/Teacher/Sidebar/Sidebar";
 import VerifyTeachToken from "../../components/Teacher/VerifyToken";
+import { Spinner } from "../../assets/Images";
 const MainTeachLay = ({ children }) => {
   const navigate = useNavigate();
    const {verifyData, LogOut} = VerifyTeachToken();
@@ -18,6 +19,9 @@ const MainTeachLay = ({ children }) => {
         </div>
         <div className="flex-1 ">{children}</div>
       </div>
+      {!verifyData.image ? <div className=" position-absolute top-0 left-0">
+        <img src={Spinner} />
+      </div> : ""}
     </div>
   );
 };

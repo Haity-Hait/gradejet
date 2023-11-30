@@ -1,0 +1,48 @@
+.img{
+    width: 200px;
+    margin: 18px auto;
+}
+
+.main{
+    width: 450px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+}
+.base{
+    width: 100%;
+    text-align: right;
+    padding: 10px 20px;
+}
+.email{
+    margin: 8px 0;
+    outline: none;
+}
+.password, .email{
+    outline: none;
+    background-color: white;
+    padding: 8px 10px; 
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid gainsboro;
+}
+.password:focus, .email:focus {
+    border: 3px solid #1476ff49;
+}
+.btn-primary{
+    background-color: #1476ff;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+.body{
+    width: 100%;
+    background-color: #f3f2ef;
+    height: 100vh;
+    display: flex;
+    padding: 0 15px;
+    align-items: center;
+    justify-content: center;
+}

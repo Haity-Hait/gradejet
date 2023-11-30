@@ -29,6 +29,8 @@ import HomeTeach from "./components/Teacher/HomeTeach";
 import ExamsRecord from "./components/Teacher/ExamsRecord";
 import ExamSidebar from "./components/Teacher/ExamSidebar";
 import Test from "./components/Teacher/SigninTeacher";
+import TeacherNotice from "./components/Teacher/Notice/Notice";
+import Signinstudent from "./components/Students/Auth/Signin";
 export const Testing = createContext()
 function App() {
 const [value, setValue] = useState([])
@@ -57,13 +59,14 @@ const [value, setValue] = useState([])
           <Route path="/admin/display-course" element={<ShowCourses />} />
           <Route path="/teacher/dashboard" element={<DashboardTeacher />} />
           <Route path="/teacher/auth" element={<Signinteacher />} />
-          {/* <Route path="/superadmin/dashb" element={<SideNav />} /> */}
+          <Route path="/teacher/notice" element={<TeacherNotice />} />
+
+          {/* Students */}
+          <Route path="/student/auth" element={<Signinstudent />} />
+
+
+
           <Route path="/student/generate" element={<GenerateStudents />} />
-        {/* <Route path="/student/signin" element={<SigninStudents />} /> */}
-        <Route path="/teacher/dashboardd" element={<HomeTeach />} />
-        <Route path="/teacher/signin" element={<Test />} />
-        <Route path="/teacher/examrecords" element={<ExamsRecord />} />
-        <Route path="/sidebar" element={<ExamSidebar />} />
           <Route path="*" element="Yo not a page" />
         </Routes>
         {/* <h1 className=" text-red-600">Production mode</h1> */}
