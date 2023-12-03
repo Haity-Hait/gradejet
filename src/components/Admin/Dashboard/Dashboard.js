@@ -29,13 +29,13 @@ const DashboardAdmin = ({ Content }) => {
     }
   setInterval(useEffect(() => {
     let time = new Date().toLocaleTimeString();
-    if (time >= "0:00:00 AM") {
+    if (time >= "00:00:00 AM") {
       setCurrentTime("Good morning");
     }
     if (time >= "12:00:00 PM") {
       setCurrentTime("Good Afternoon");
     }
-    if (time >= "4:00:00 PM") {
+    if (time >= "04:00:00 PM") {
       setCurrentTime("Good Evening");
     }
   }), 0);

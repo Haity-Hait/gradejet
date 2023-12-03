@@ -6,15 +6,16 @@ import VerifyTeachToken from "../../components/Teacher/VerifyToken";
 import { Spinner } from "../../assets/Images";
 const MainTeachLay = ({ children }) => {
   const navigate = useNavigate();
-   const {verifyData, LogOut} = VerifyTeachToken();
+   const {verifyData, sch, LogOut} = VerifyTeachToken();
+   console.log(sch);
   return (
     <div>
       <div className="flex">
         <div className="sticky kk top-0">
           <SidebarTeach
-            ADMINLOGO={verifyData.image}
+            ADMINLOGO={sch.image}
             LOGOUT={() => LogOut()}
-            TeacherName={verifyData.name}
+            TeacherName={verifyData.schoolName}
           />
         </div>
         <div className="flex-1 ">{children}</div>

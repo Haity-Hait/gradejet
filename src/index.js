@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "react-icons"
 import "@headlessui/react"
+// import 'virtual:windi.css'
 import "emoji-paphe"
 import "@heroicons/react"
 import { BrowserRouter } from 'react-router-dom';

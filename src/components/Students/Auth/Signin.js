@@ -11,18 +11,18 @@ import { ToastContainer, toast } from "react-toastify";
 const Signinstudent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [admin, setAdmin] = useState([]);
-  const [currentAdmin, setCurrentAdmin] = useState([]);
+  // const [admin, setAdmin] = useState([]);
+  // const [currentAdmin, setCurrentAdmin] = useState([]);
   const navigate = useNavigate()
   let data = {email, password}
 
   const check = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:1516/auth/teacher", data).then((res) => {
+    axios.post("http://localhost:1516/auth/student", data).then((res) => {
       let token = res.data.token
       toast.success(res.data.message)
-      localStorage.setItem("Ttoken", token)
-      navigate("/teacher/dashboard")
+      localStorage.setItem("Stoken", token)
+      // navigate("/teacher/dashboard")
     }).catch((err) => {
       toast.error(err.response.data.message)
     })

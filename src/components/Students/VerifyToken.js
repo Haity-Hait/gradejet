@@ -1,8 +1,8 @@
-  import axios from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
-const VerifyTeachToken = () => {
+const VerifyStudToken = () => {
   const [expired, setExpired] = useState(false);
   const [verifyData, setVerifyData] = useState({});
   const [teachers, setTeachers] = useState([]);
@@ -12,8 +12,8 @@ const VerifyTeachToken = () => {
   const navigate = useNavigate();
 
   const LogOut = () => {
-    localStorage.removeItem("Ttoken");
-    navigate("/teacher/auth");
+    localStorage.removeItem("Stoken");
+    navigate("/student/auth");
   };
 
   const fetchData = async (schoolName, schoolEmail) => {
@@ -54,14 +54,14 @@ const VerifyTeachToken = () => {
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const token = localStorage.getItem("Ttoken");
+        const token = localStorage.getItem("Stoken");
         if (!token) {
           LogOut(); // Perform logout if token is not found
           return;
         }
 
         const response = await axios.get(
-          "http://localhost:1516/teacher/verifytoken",
+          "http://localhost:1516/student/verifytoken",
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -92,4 +92,4 @@ const VerifyTeachToken = () => {
   return { verifyData, expired, sch, LogOut, teachers, students, courses };
 };
 
-export default VerifyTeachToken;
+export default VerifyStudToken;

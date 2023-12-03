@@ -81,17 +81,24 @@ const DashboardAdmin = ({ Content }) => {
                                 <p className="ppaa ">{students.length}</p>
                             </div>
                             <div className="sch flip" >
+                            <PiBooksDuotone className="nan" />
+
+                                <p className=" mx-4">{verifyData.course}</p>
+                                <p className="ppaa invisible"></p>
+                            </div>
+                            <div className="sch flip" >
                                 <PiStudentDuotone className="nan" />
                                 <p className=" mx-4">Staff ID</p>
                                 <p className="ppaa p-7">{verifyData.teacherId}</p>
                             </div>
                             
                             
+                            
                         </div>
 
                         <div className="flex fall justify-between items-center">
                             <div>
-                                <h1 className="mn">{currentTime},  {verifyData.course} Teacher.</h1>
+                                <h1 className="mn">{currentTime}, <span className=" capitalize">{verifyData.initial}</span>  {verifyData.name}.</h1>
                             </div>
                             <div className="blue p-3">
                                 <h1 className="wel ">Welcome Back To GradeJet System</h1>

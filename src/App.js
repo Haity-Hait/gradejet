@@ -31,6 +31,7 @@ import ExamSidebar from "./components/Teacher/ExamSidebar";
 import Test from "./components/Teacher/SigninTeacher";
 import TeacherNotice from "./components/Teacher/Notice/Notice";
 import Signinstudent from "./components/Students/Auth/Signin";
+import Check from "./components/Students/Sidebar/Fetched/Check.tsx";
 export const Testing = createContext()
 function App() {
 const [value, setValue] = useState([])
@@ -63,6 +64,7 @@ const [value, setValue] = useState([])
 
           {/* Students */}
           <Route path="/student/auth" element={<Signinstudent />} />
+          <Route path="/check" element={<Check />} />
 
 
 

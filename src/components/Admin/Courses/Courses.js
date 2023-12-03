@@ -16,12 +16,14 @@ const Courses = () => {
   const [courseDuration, setCourseDuration] = useState("");
   const { verifyData, expired } = VerifyToken();
   let schoolName = verifyData.schoolName;
+  let schoolEmail = verifyData.schoolEmail;
   const data = {
     courseName,
     courseTimePerDay,
     courseType,
     courseDuration,
     schoolName,
+    schoolEmail
   };
   const create = (e) => {
     e.preventDefault();
