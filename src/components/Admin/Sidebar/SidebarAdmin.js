@@ -17,7 +17,8 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
     // { title: "", src: Chat, gap: true, to: "" },
     // { title: "Notification", src: Chat, gap: true, to: "" },
     { title: "Courses ", gap: true, src: Chart_fill, to: "/admin/courses" },
-    { title: "Files ", src: Folder, to: "" },
+    { title: "Department", gap: false, src: Chart_fill, to: "/admin/department" },
+    { title: "Files ", gap: true, src: Folder, to: "" },
   ];
   const [isVisible, setIsVisible] = useState(false);
 

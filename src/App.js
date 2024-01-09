@@ -31,7 +31,8 @@ import ExamSidebar from "./components/Teacher/ExamSidebar";
 import Test from "./components/Teacher/SigninTeacher";
 import TeacherNotice from "./components/Teacher/Notice/Notice";
 import Signinstudent from "./components/Students/Auth/Signin";
-import Check from "./components/Students/Sidebar/Fetched/Check.tsx";
+import StudentDashboard from "./components/Students/Dashboard/Dashboard.js";
+import Department from "./components/Admin/Department/Department.js";
 export const Testing = createContext()
 function App() {
 const [value, setValue] = useState([])
@@ -41,7 +42,7 @@ const [value, setValue] = useState([])
       <div className="App">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          {/* <Route path="/teacher/generate" element={<GenerateTeacher />} /> */}
+
           <Route path="/superadmin/signin" element={<Signin />} />
           <Route path="/superadmin/dashboard" element={<Dashboard />} />
           <Route path="/superadmin/generate/school" element={<GenerateSchool />} />
@@ -49,6 +50,7 @@ const [value, setValue] = useState([])
           <Route path="/superadmin/school/:id" element={<ShowOne />} />
           <Route path="/superadmin/notices" element={<Notice />} />
           <Route path="/superadmin/construct" element={<UnderConstructionSuperAdmin />} />
+
           <Route path="/admin/signin" element={<Signinadmin />} />
           <Route path="/admin/dashboard" element={<DashboardAdmin />} />
           <Route path="/admin/notice" element={<AdminNotice />} />
@@ -58,13 +60,15 @@ const [value, setValue] = useState([])
           <Route path="/admin/display-student" element={<Showstudent />} />
           <Route path="/admin/display-teacher" element={<ShowTeachers />} />
           <Route path="/admin/display-course" element={<ShowCourses />} />
+          <Route path="/admin/department" element={<Department />} />
+
           <Route path="/teacher/dashboard" element={<DashboardTeacher />} />
           <Route path="/teacher/auth" element={<Signinteacher />} />
           <Route path="/teacher/notice" element={<TeacherNotice />} />
 
           {/* Students */}
           <Route path="/student/auth" element={<Signinstudent />} />
-          <Route path="/check" element={<Check />} />
+          <Route path="/student/dashboard" element={<StudentDashboard />} />
 
 
 

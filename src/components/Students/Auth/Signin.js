@@ -3,7 +3,7 @@ import { LightLogo } from "../../../assets/Images";
 import "./signin.css";
 import { useNavigate } from "react-router";
 import axios from "axios";
-import { Testing } from "../../../App";
+// import { Testing } from "../../../App";
 import { ToastContainer, toast } from "react-toastify";
 
 
@@ -22,7 +22,7 @@ const Signinstudent = () => {
       let token = res.data.token
       toast.success(res.data.message)
       localStorage.setItem("Stoken", token)
-      // navigate("/teacher/dashboard")
+      navigate("/student/dashboard")
     }).catch((err) => {
       toast.error(err.response.data.message)
     })

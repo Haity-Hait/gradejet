@@ -29,6 +29,7 @@ const GenerateStudents = () => {
   let currentYear = new Date().getFullYear();
   let academicYear = String(currentYear) + " / " + String(currentYear - 1);
   const schoolLink = verifyData.schoolLink;
+  const schoolLogo = verifyData.image
   let data = {
     name,
     email,
@@ -45,6 +46,7 @@ const GenerateStudents = () => {
     stateOfOrigin,
     schoolLink,
     academicYear,
+    schoolLogo
   };
   const add = async () => {
     axios
