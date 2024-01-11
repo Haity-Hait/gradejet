@@ -42,7 +42,7 @@ const DashboardAdmin = ({ Content }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:1516/get/admin/notice")
+      .get("https://gradejet-backend.onrender.com/get/admin/notice")
       .then((res) => {
         // console.log();
         let note = res.data.notice;

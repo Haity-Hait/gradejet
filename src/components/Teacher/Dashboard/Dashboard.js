@@ -45,7 +45,7 @@ const DashboardAdmin = ({ Content }) => {
 
     const pepe = () => {
          axios
-            .post(`http://localhost:1516/get/teacher/notice`, datas)
+            .post(`https://gradejet-backend.onrender.com/get/teacher/notice`, datas)
             .then((res) => {
                 console.log(res)
                 let note = res.data.notice;

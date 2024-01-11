@@ -14,14 +14,14 @@ const Dashboard = () => {
   
   
   useEffect(() => {
-    axios.get("http://localhost:1516/get/school").then((res) => {
+    axios.get("https://gradejet-backend.onrender.com/get/school").then((res) => {
       // console.log();
       setAmount(res.data.result)
     }).catch((err) => {
       console.log(err);
     })
     axios
-      .get("http://localhost:1516/get/admin/super/notice")
+      .get("https://gradejet-backend.onrender.com/get/admin/super/notice")
       .then((res) => {
         // console.log();
         let note = res.data.notice;

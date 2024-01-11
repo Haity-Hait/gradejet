@@ -32,7 +32,7 @@ const Department = () => {
     const [name, setName] = useState("");
     // const data = 
     const create  = () => {
-        axios.post("​http://localhost:1516/department", {name})
+        axios.post("​https://gradejet-backend.onrender.com/department", {name})
         .then((result) => {
             console.log(result);
         })

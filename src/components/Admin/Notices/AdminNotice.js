@@ -20,7 +20,7 @@ const AdminNotice = () => {
   const send = () => {
     console.log(time);
     axios
-      .post("http://localhost:1516/notice", data)
+      .post("https://gradejet-backend.onrender.com/notice", data)
       .then((res) => {
         toast.success(`Notice sent to all ${res.data.message.to}`);
       })

@@ -12,7 +12,7 @@ const SendMail = () => {
     const sendEmail = async (e) => {
         e.preventDefault();
 
-        const res = await fetch("http://localhost:1516/register", {
+        const res = await fetch("https://gradejet-backend.onrender.com/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

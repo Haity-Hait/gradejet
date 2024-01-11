@@ -18,7 +18,7 @@ const Signinadmin = () => {
 
   const check = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:1516/get/school/v1", data).then((res) => {
+    axios.post("https://gradejet-backend.onrender.com/get/school/v1", data).then((res) => {
       let token = res.data.token
       toast.success(res.data.message)
       localStorage.setItem("token", token)

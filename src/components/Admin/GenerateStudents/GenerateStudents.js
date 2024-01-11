@@ -50,7 +50,7 @@ const GenerateStudents = () => {
   };
   const add = async () => {
     axios
-      .post("http://localhost:1516/generate/student", data)
+      .post("https://gradejet-backend.onrender.com/generate/student", data)
       .then((res) => {
         toast.success(res.data.message);
         setName(" ");

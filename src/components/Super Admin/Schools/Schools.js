@@ -8,7 +8,7 @@ const Schools = () => {
     const [school, setSchool] = useState([])
     const [search, setSearch] = useState("")
     useEffect(() => {
-        axios.get("http://localhost:1516/get/school").then((res) => {
+        axios.get("https://gradejet-backend.onrender.com/get/school").then((res) => {
             let data = res.data.result
             setSchool(data)
         }).catch((err) => {

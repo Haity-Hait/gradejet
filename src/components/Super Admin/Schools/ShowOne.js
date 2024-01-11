@@ -8,7 +8,7 @@ import { CalendarDaysIcon } from "@heroicons/react/24/outline";
 const ShowOne = () => {
     const [one, setOne] = useState(null);
     const { id } = useParams();
-    const { data } = UseAxios(`http://localhost:1516/get/school/${id}`);
+    const { data } = UseAxios(`https://gradejet-backend.onrender.com/get/school/${id}`);
     useEffect(() => {
         if (data) {
             setOne(data.result);

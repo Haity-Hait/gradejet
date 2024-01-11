@@ -28,7 +28,7 @@ const Courses = () => {
   const create = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:1516/courses", data)
+      .post("https://gradejet-backend.onrender.com/courses", data)
       .then((res) => {
         toast.success(res.data.message);
         setCourseName("");

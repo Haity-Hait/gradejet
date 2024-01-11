@@ -14,7 +14,7 @@ const Notice = () => {
     let data = { from, to, notice, date, time, sender, senderEmail }
     const send = () => {
         console.log(time);
-        axios.post("http://localhost:1516/notice", data).then((res) => {
+        axios.post("https://gradejet-backend.onrender.com/notice", data).then((res) => {
             alert(`Notice sent to all ${res.data.message.to}`);
         }).catch((err) => {
             alert(err.response.data.message);

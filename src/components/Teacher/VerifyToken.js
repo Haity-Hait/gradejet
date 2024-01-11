@@ -18,28 +18,28 @@ const VerifyTeachToken = () => {
 
   const fetchData = async (schoolName, schoolEmail) => {
     try {
-      const response = await axios.get("http://localhost:1516/get/teachers", {
+      const response = await axios.get("https://gradejet-backend.onrender.com/get/teachers", {
         params: {
           schoolEmail: schoolEmail,
         },
       });
       setTeachers(response.data.message);
       console.log(teachers);
-      const response1 = await axios.get("http://localhost:1516/get/students", {
+      const response1 = await axios.get("https://gradejet-backend.onrender.com/get/students", {
         params: {
           schoolEmail: schoolEmail,
         },
       });
       setStudents(response1.data.message);
 
-      const response2 = await axios.get("http://localhost:1516/get/courses", {
+      const response2 = await axios.get("https://gradejet-backend.onrender.com/get/courses", {
         params: {
           schoolName: schoolName,
         },
       });
       setCourses(response2.data.message);
 
-      const response3 = await axios.get("http://localhost:1516/get/yoursch", {
+      const response3 = await axios.get("https://gradejet-backend.onrender.com/get/yoursch", {
         params: {
           schoolEmail: schoolEmail,
         },
@@ -61,7 +61,7 @@ const VerifyTeachToken = () => {
         }
 
         const response = await axios.get(
-          "http://localhost:1516/teacher/verifytoken",
+          "https://gradejet-backend.onrender.com/teacher/verifytoken",
           {
             headers: {
               Authorization: "Bearer " + token,

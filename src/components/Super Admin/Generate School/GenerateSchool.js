@@ -23,7 +23,7 @@ const GenerateSchool = () => {
     let data = { schoolName, email, password, address, city, Zip, country, folllower, likes, phone, image, classMode, Year, Month, schoolLink }
     const add = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:1516/generate/school", data).then((res) => {
+        axios.post("https://gradejet-backend.onrender.com/generate/school", data).then((res) => {
             alert(res.data.message)
         }).catch((err) => {
             // console.log(err.response.data.message._message)

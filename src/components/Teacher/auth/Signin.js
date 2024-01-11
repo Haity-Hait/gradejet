@@ -18,7 +18,7 @@ const Signinteacher = () => {
 
   const check = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:1516/auth/teacher", data).then((res) => {
+    axios.post("https://gradejet-backend.onrender.com/auth/teacher", data).then((res) => {
       let token = res.data.token
       toast.success(res.data.message)
       localStorage.setItem("Ttoken", token)

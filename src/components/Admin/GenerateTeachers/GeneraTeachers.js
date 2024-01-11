@@ -38,7 +38,7 @@ const GenerateTeachers = () => {
   };
   const add = async () => {
     axios
-      .post("http://localhost:1516/generate/teacher", data)
+      .post("https://gradejet-backend.onrender.com/generate/teacher", data)
       .then((res) => {
         toast.success(res.data.message);
         setDob("");
