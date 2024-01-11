@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import axios from 'axios';
+import VerifyToken from '../../VerifyToken';
 
 
 const style = {
@@ -30,15 +31,20 @@ const Department = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [name, setName] = useState("");
-    // const data = 
+
+    let {verifyData} = VerifyToken()
+    const schoolName = verifyData.schoolName;
+    const schoolEmail = verifyData.email;
+    const data = {name, schoolName, schoolEmail}
+
     const create  = () => {
-        axios.post("​https://gradejet-backend.onrender.com/department", {name})
-        .then((result) => {
-            console.log(result);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+       console.log(data);
+       axios.post("​http://localhost:1516/department", data)
+       .then((res) => {
+        console.log(res);
+       }).catch((err) => {
+        console.log(err);
+       })
     }
     return (
         <MainAdminLay>
