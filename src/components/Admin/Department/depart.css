@@ -1,0 +1,15 @@
+.bob{
+    /* width: 50px;
+    height: 50px; */
+    color: white;
+    font-size: 50px;
+    padding: 10px;
+    border-radius: 100%;
+}
+.ccd{
+    position: fixed;
+    bottom: 5px;
+    width: 91%;
+    display: flex;
+    justify-content: center;
+}

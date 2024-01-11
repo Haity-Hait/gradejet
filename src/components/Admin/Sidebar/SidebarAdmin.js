@@ -29,7 +29,7 @@ const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
     <div className="flex kk">
       <div
         className={` ${open ? "w-20" : "w-72"
-          } bg-dark-purple pros kk  p-4  pt-8 relative duration-300`}
+          } bg-dark-purple pros   p-4  pt-8  duration-300`}
       >
         <img
           src={CONTROL}
