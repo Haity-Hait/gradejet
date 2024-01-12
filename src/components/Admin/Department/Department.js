@@ -11,6 +11,8 @@ import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import axios from 'axios';
 import VerifyToken from '../../VerifyToken';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const style = {
@@ -31,23 +33,29 @@ const Department = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [name, setName] = useState("");
-
-    let {verifyData} = VerifyToken()
+    const [loading, setLoading] = useState(false)
+    let { verifyData } = VerifyToken()
     const schoolName = verifyData.schoolName;
     const schoolEmail = verifyData.email;
-    const data = {name, schoolName, schoolEmail}
+    const data = { name, schoolName, schoolEmail }
 
-    const create  = () => {
-       console.log(data);
-       axios.post("​http://localhost:1516/department", data)
-       .then((res) => {
-        console.log(res);
-       }).catch((err) => {
-        console.log(err);
-       })
+    const create = () => {
+        console.log(data);
+            axios.post("https://gradejet-backend.onrender.com/department", data)
+                .then((res) => {
+                    console.log(res);
+                    setName(" ")
+                    handleClose()
+                    toast.success(res.data.message)
+                }).catch((err) => {
+                    console.log(err);
+                    toast.error(err.response.data.message)
+                })
     }
     return (
         <MainAdminLay>
+        <ToastContainer />
+
             <div className=" px-5 py-2 h-screen">
                 <div className="waist px-3">
                     <h3 className="bop">Departments</h3>
@@ -59,7 +67,7 @@ const Department = () => {
                     <DepartmentTable />
                 </div>
                 <div className='ccd '>
-                    
+
                     <Button onClick={handleOpen}><button className='bob bg-dark-purple'><FaPlus /></button></Button>
                     <Modal
                         open={open}
@@ -74,7 +82,7 @@ const Department = () => {
                             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                                 <input className='form-control' onChange={(e) => setName(e.target.value)} placeholder='Department name' />
                                 <div className='flex justify-end py-2'>
-                                <Button onClick={create}>Create</Button>
+                                    <Button onClick={() => create()}>Create</Button>
                                 </div>
                             </Typography>
                         </Box>

@@ -9,6 +9,7 @@ const VerifyToken = () => {
   const [students, setStudent] = useState([]);
   const [courses, setCourses] = useState([]);
   const [sch, setSch] = useState([]);
+  const [department, setDepartment] = useState([]);
 
   const navigate = useNavigate();
 
@@ -45,7 +46,15 @@ const VerifyToken = () => {
         },
       });
       setSch(...response3.data.message);
-      console.log(sch);
+
+
+      const response4 = await axios.post("https://gradejet-backend.onrender.com/get/department", 
+        {
+          schoolEmail: schoolEmail,
+        }
+      );
+      setDepartment(...response4.data.result);
+      console.log(department);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
