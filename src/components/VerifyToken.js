@@ -54,7 +54,9 @@ const VerifyToken = () => {
         }
       );
       setDepartment(...response4.data.result);
-      console.log(department);
+      console.log(response4);
+
+
     } catch (error) {
       console.error("Error fetching data:", error);
     }
