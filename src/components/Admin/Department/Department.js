@@ -47,6 +47,7 @@ const Department = () => {
                     setName(" ")
                     handleClose()
                     toast.success(res.data.message)
+                    window.location.reload()
                 }).catch((err) => {
                     console.log(err);
                     toast.error(err.response.data.message)

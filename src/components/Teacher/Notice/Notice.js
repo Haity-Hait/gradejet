@@ -66,6 +66,7 @@ const TeacherNotice = () => {
               >
                 <option selected hidden></option>
                 <option value="student">Students</option>
+                <option value="admins">Admin</option>
               </select>
             </div>
           </div>

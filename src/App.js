@@ -9,8 +9,6 @@ import UnderConstructionSuperAdmin from "./components/Under Construction/UnderCo
 import Signinadmin from "./components/Admin/Signin/Signin";
 import DashboardAdmin from "./components/Admin/Dashboard/Dashboard";
 import { createContext, useContext, useState } from "react";
-import Modal from "./components/Admin/Modal/Modal";
-import Time from "./components/Time";
 import AdminNotice from "./components/Admin/Notices/AdminNotice";
 // import GeneraTeachers from "./components/Admin/GenerateTeachers/GeneraTeachers";
 import Courses from "./components/Admin/Courses/Courses";
@@ -25,14 +23,13 @@ import ShowCourses from "./components/Admin/Dashboard/ShowCourses/ShowCourses";
 import LandingPage from "./components/LandingPage/LandingPage";
 import DashboardTeacher from "./components/Teacher/Dashboard/Dashboard";
 import Signinteacher from "./components/Teacher/auth/Signin";
-import HomeTeach from "./components/Teacher/HomeTeach";
-import ExamsRecord from "./components/Teacher/ExamsRecord";
-import ExamSidebar from "./components/Teacher/ExamSidebar";
-import Test from "./components/Teacher/SigninTeacher";
 import TeacherNotice from "./components/Teacher/Notice/Notice";
 import Signinstudent from "./components/Students/Auth/Signin";
 import StudentDashboard from "./components/Students/Dashboard/Dashboard.js";
 import Department from "./components/Admin/Department/Department.js";
+import GradeStudent from "./components/Teacher/Grade Students/GradeStudent.js";
+import StudentCourse from "./components/Students/Course/Course.js";
+import MyCourse from "./components/Students/MyCourse/MyCourse.js";
 export const Testing = createContext()
 function App() {
 const [value, setValue] = useState([])
@@ -65,10 +62,13 @@ const [value, setValue] = useState([])
           <Route path="/teacher/dashboard" element={<DashboardTeacher />} />
           <Route path="/teacher/auth" element={<Signinteacher />} />
           <Route path="/teacher/notice" element={<TeacherNotice />} />
+          <Route path="/teacher/grade-student" element={<GradeStudent />} />
 
           {/* Students */}
           <Route path="/student/auth" element={<Signinstudent />} />
           <Route path="/student/dashboard" element={<StudentDashboard />} />
+          <Route path="/student/pick-course" element={<StudentCourse />} />
+          <Route path="/student/mycourse" element={<MyCourse />} />
 
 
 

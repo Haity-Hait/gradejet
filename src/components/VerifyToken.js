@@ -9,6 +9,7 @@ const VerifyToken = () => {
   const [students, setStudent] = useState([]);
   const [courses, setCourses] = useState([]);
   const [sch, setSch] = useState([]);
+  const [department, setDepartment] = useState([]);
 
   const navigate = useNavigate();
 
@@ -24,14 +25,13 @@ const VerifyToken = () => {
         },
       });
       setTeachers(response.data.message);
-      console.log(teachers);
+      // console.log(teachers);
       const response1 = await axios.get("https://gradejet-backend.onrender.com/get/students", {
         params: {
           schoolEmail: schoolEmail,
         },
       });
       setStudent(response1.data.message);
-      console.log(students)
       const response2 = await axios.get("https://gradejet-backend.onrender.com/get/courses", {
         params: {
           schoolName: schoolName,
@@ -72,7 +72,7 @@ const VerifyToken = () => {
         const gg = response.data.data;
         if (response.data && gg) {
           setVerifyData(gg);
-          console.log(gg)
+          // console.log(gg)
           setExpired(false); // Reset expired state if token is valid
           fetchData(gg.schoolName, gg.email);
 
@@ -89,7 +89,7 @@ const VerifyToken = () => {
     verifyToken(); // Verify token immediately when the component renders
   }, []); // Note: Dependency array is empty to run only on mount
 
-  return { verifyData, expired, LogOut, teachers, students, courses };
+  return { verifyData, expired, LogOut, teachers, students, courses, department };
 };
 
 export default VerifyToken;

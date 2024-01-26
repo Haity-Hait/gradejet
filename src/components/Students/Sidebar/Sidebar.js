@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./sidebar.css";
 import VerifyStudToken from '../VerifyToken';
+import { Link } from 'react-router-dom';
 
 const StudentSidebar = ({pageContent}) => {
     const { verifyData, LogOut } = VerifyStudToken()
@@ -34,6 +35,7 @@ const StudentSidebar = ({pageContent}) => {
                         <input type="text" placeholder="Search..." />
                         <span className="tooltip">Search</span>
                     </li>
+                    <Link to="/student/dashboard">
                     <li>
                         <a href="#">
                             <i className="bx bx-grid-alt"></i>
@@ -41,13 +43,16 @@ const StudentSidebar = ({pageContent}) => {
                         </a>
                         <span className="tooltip">Dashboard</span>
                     </li>
+                    </Link>
+                    <Link to="/student/mycourse">
                     <li>
                         <a href="#">
-                            <i className="bx bx-grid-alt"></i>
-                            <span className="links_name">Dashboard</span>
+                        <i class='bx bxs-book-bookmark'></i>
+                            <span className="links_name">My Course</span>
                         </a>
-                        <span className="tooltip">Dashboard</span>
+                        <span className="tooltip">My Course</span>
                     </li>
+                    </Link>
                     <li>
                         <a href="#">
                             <i className="bx bx-grid-alt"></i>

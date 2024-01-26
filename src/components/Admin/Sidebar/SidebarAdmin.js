@@ -5,7 +5,6 @@ import { CONTROL, Calendar, Chart, Chart_fill, Chat, Folder,  User } from "../..
 import { BiLogOut } from "react-icons/bi";
 import { Icon } from '@iconify/react';
 import Modal from "../Modal/Modal";
-// import { LuLogOut } from "react-icons/lu";
 const SidebarAdmin = ({ ADMINLOGO, SCHOOLNAME, LOGOUT }) => {
   const [wakeLogout, setWakeLogOut] = useState(false)
   const [open, setOpen] = useState(true);

@@ -22,7 +22,22 @@ const Signinstudent = () => {
       let token = res.data.token
       toast.success(res.data.message)
       localStorage.setItem("Stoken", token)
-      navigate("/student/dashboard")
+
+
+      // Determine if it's the first time signing in
+      const isFirstTimeSignIn = !localStorage.getItem(`signedInBefore as ${email}`);
+
+      if (isFirstTimeSignIn) {
+        // Set the flag in local storage
+        localStorage.setItem(`signedInBefore as ${email}`, true);
+
+        // Redirect to pick-course for the first time
+        navigate("/student/pick-course");
+      } else {
+        // Redirect to dashboard for subsequent logins
+        navigate("/student/dashboard");
+      }
+      
     }).catch((err) => {
       toast.error(err.response.data.message)
     })

@@ -12,7 +12,7 @@ const SidebarTeach = ({ ADMINLOGO, TeacherName, LOGOUT }) => {
   const Menus = [
     { title: "Dashboard", src: Chart_fill, to: "/teacher/dashboard" },
     { title: "Notice", src: Chart, to: "/teacher/notice" },
-    { title: "Grade Students", gap: true, src: User, to: "" },
+    { title: "Grade Students", gap: true, src: User, to: "/teacher/grade-student" },
     { title: "Give Assignment ", src: Calendar, to: "" },
     { title: "Files ", src: Folder, to: "" },
   ];
